@@ -1,0 +1,53 @@
+/* mainPage3.css - 네 번째 섹션 전용 스타일 */
+
+.fourth-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.fourth-section .main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1440px; /* 최대 너비 고정 */
+    width: 100%;
+    margin: 0 auto;
+    padding: 50px;
+    background-color: white;
+    color: black;
+}
+
+.fourth-section .analysis {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 300px;
+    background-color: black;
+    padding: 30px;
+    border-radius: 10px;
+    color: white;
+}
+
+.fourth-section .circle-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.fourth-section .analysis h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.fourth-section .analysis p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ccc;
+    text-align: center;
+}
