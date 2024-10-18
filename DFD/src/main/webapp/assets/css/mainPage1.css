@@ -110,20 +110,28 @@ header {
 
 h1 {
 	position: absolute; /* 위치를 고정하여 이동 가능하게 설정 */
-	bottom: 50%; /* 화면의 아래쪽에서 30% 위로 이동 */
+	bottom: 50%; /* 화면의 아래쪽에서 50% 위로 이동 */
 	left: 50%; /* 화면의 중앙으로 수평 이동 */
 	transform: translateX(-50%); /* 수평 중앙 정렬 */
 	font-size: 80px;
 	font-weight: bold;
 }
-
+.text-overlay2 .h1 {
+	position: absolute; /* 위치를 고정하여 이동 가능하게 설정 */
+	bottom: 50%; /* 화면의 아래쪽에서 30% 위로 이동 */
+	left: 30%; /* 화면의 중앙으로 수평 이동 */
+	transform: translateX(-30%); /* 수평 중앙 정렬 */
+	font-size: 80px;
+	font-weight: bold;
+}
 
 .question {
 	position: absolute;
 	bottom: 30%;
 	right: 15%;
 	color: white;
-	font-size: 20px;
+	font-size: 25px;
+	font-weight: bold;
 }
 
 .scroll-indicator {
