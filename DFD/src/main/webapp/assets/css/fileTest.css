@@ -50,8 +50,8 @@ header {
     border-radius: 15px;
 }
 
-/* 사용자 화면 */
-.user-screen {
+/* 미리보기 화면 */
+.preview-screen {
     width: 300px;
     height: 400px;
     background-color: black;
