@@ -19,7 +19,7 @@
                     <a href="#">FileTest</a>
                     <a href="#">Detection</a>
                     <a href="${pageContext.request.contextPath}/login">Login</a>
-                    <a href="#">Join</a>
+                    <a href="${pageContext.request.contextPath}/join">Join</a>
                 </div>
             </header>
             <div class="main-content">
@@ -43,7 +43,7 @@
                     <a href="#">FileTest</a>
                     <a href="#">Detection</a>
                     <a href="${pageContext.request.contextPath}/login">Login</a>
-                    <a href="#">Join</a>
+                    <a href="${pageContext.request.contextPath}/join">Join</a>
                 </div>
             </header>
             <div class="main-content">
@@ -66,7 +66,7 @@
                     <a href="#">FileTest</a>
                     <a href="#">Detection</a>
                     <a href="${pageContext.request.contextPath}/login">Login</a>
-                    <a href="#">Join</a>
+                    <a href="${pageContext.request.contextPath}/join">Join</a>
                 </div>
             </header>
             <div class="main-content">
@@ -95,7 +95,7 @@
                     <a href="#">FileTest</a>
                     <a href="#">Detection</a>
                     <a href="${pageContext.request.contextPath}/login">Login</a>
-                    <a href="#">Join</a>
+                    <a href="${pageContext.request.contextPath}/join">Join</a>
                 </div>
             </header>
             <div class="main-content">
