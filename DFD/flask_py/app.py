@@ -1,10 +1,13 @@
 from flask import Flask
+from routes import setup_routes
 
 app = Flask(__name__)
 
-@app.route('/')
-def home():
-    return "Hello, Flask in Eclipse!"
+setup_routes(app)  # routes.py에서 라우트 설정
+
+for rule in app.url_map.iter_rules():
+    print(f"Registered route: {rule}")
+
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)  # 로컬 서버 실행
