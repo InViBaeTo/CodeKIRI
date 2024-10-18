@@ -117,21 +117,6 @@ h1 {
 	font-weight: bold;
 }
 
-h2 {
-	position: absolute; /* 위치를 고정하여 이동 가능하게 설정 */
-	bottom: 30%;
-	left: 5%;
-	font-size: 60px;
-	font-weight: bold;
-	color: white;
-}
-
-h3 {
-	position: absolute; /* 위치를 고정하여 이동 가능하게 설정 */
-	font-weight: bold;
-	font-size: 30px;
-	color: white;
-}
 
 .question {
 	position: absolute;

@@ -18,7 +18,7 @@
                 <div class="header-right">
                     <a href="#">FileTest</a>
                     <a href="#">Detection</a>
-                    <a href="#">Login</a>
+                    <a href="${pageContext.request.contextPath}/login">Login</a>
                     <a href="#">Join</a>
                 </div>
             </header>
@@ -42,14 +42,14 @@
                 <div class="header-right">
                     <a href="#">FileTest</a>
                     <a href="#">Detection</a>
-                    <a href="#">Login</a>
+                    <a href="${pageContext.request.contextPath}/login">Login</a>
                     <a href="#">Join</a>
                 </div>
             </header>
             <div class="main-content">
                 <img src="${pageContext.request.contextPath}/img/face2.jpg" alt="Deepfake Detector" class="main-image" style="opacity: 0.7;">
                 <div class="text-overlay2">
-                    <h2>DEEPFAKE</h2>
+                    <h1>DEEPFAKE</h1>
                     <p class="subtitle">당신이 마주하는 화면너머의 진실</p>
                     <p class="description">딥페이크 디텍터는 여러분의 신변 안전을 위하여 언제나 진실을 찾기 위해 노력합니다.</p>
                 </div>
@@ -65,7 +65,7 @@
                 <div class="header-right">
                     <a href="#">FileTest</a>
                     <a href="#">Detection</a>
-                    <a href="#">Login</a>
+                    <a href="${pageContext.request.contextPath}/login">Login</a>
                     <a href="#">Join</a>
                 </div>
             </header>
@@ -78,7 +78,7 @@
                 </div>
                 <!-- 설명 박스 -->
                 <div class="description-box">
-                    <h3>DETECTOR</h3>
+                    <h1>DETECTOR</h1>
                     <p class="subtitle">CODE KIRI는 AI 시대에 맞춰 딥페이크를 연구하고 개발하는 팀입니다.</p>
                     <p>AI가 발전하여 화면너머의 사람마저 감출 수 있는 상황에 맞추어 딥페이크를 검출하고 이용자에게 진실을 알려주기 위해 이 프로그램이 개발 되었습니다.</p>
                 </div>
@@ -94,7 +94,7 @@
                 <div class="header-right">
                     <a href="#">FileTest</a>
                     <a href="#">Detection</a>
-                    <a href="#">Login</a>
+                    <a href="${pageContext.request.contextPath}/login">Login</a>
                     <a href="#">Join</a>
                 </div>
             </header>
@@ -102,13 +102,13 @@
                 <!-- 왼쪽 설명 박스 -->
                 <div class="analysis">
                     <img src="${pageContext.request.contextPath}/img/혈관 얼굴.jpg" alt="혈류 분석" class="circle-image">
-                    <h4>혈류 분석</h4>
+                    <h2>혈류 분석</h2>
                     <p>딥페이크 분석을 넘어 더한 정교하게 만들어진 분석<br>혈관에 있어 높은 정확성을 가진다.</p>
                 </div>
                 <!-- 오른쪽 설명 박스 -->
                 <div class="analysis">
                     <img src="${pageContext.request.contextPath}/img/안면인식.jpg" alt="안면 분석" class="circle-image">
-                    <h4>안면 분석</h4>
+                    <h2>안면 분석</h2>
                     <p>안면 분석을 통한 인물의 미묘한 움직임을 감지<br>부자연스러운 점을 찾아 딥페이크를 감지한다.</p>
                 </div>
             </div>
