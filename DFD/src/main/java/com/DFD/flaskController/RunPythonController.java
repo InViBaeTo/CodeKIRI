@@ -1,4 +1,4 @@
-package com.DFD.mainController;
+package com.DFD.flaskController;
 
 import java.io.BufferedReader;
 import java.io.IOException;
