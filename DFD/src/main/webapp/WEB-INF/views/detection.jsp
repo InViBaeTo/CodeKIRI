@@ -20,8 +20,8 @@
       <header>
          <div class="header-left">CODE KIRI</div>
          <div class="header-right">
-            <a href="#">FileTest</a> <a href="#">Detection</a> <a href="#">Logout</a>
-            <a href="#">Mypage</a>
+            <a href="${pageContext.request.contextPath}/fileTest">FileTest</a> <a href="${pageContext.request.contextPath}/detection">Detection</a> <a href="${pageContext.request.contextPath}/">Logout</a>
+            <a href="${pageContext.request.contextPath}/myPage">Mypage</a>
          </div>
       </header>
 

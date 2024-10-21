@@ -1,40 +1,60 @@
 @charset "UTF-8";
 
-/* 공통 헤더 스타일 */
-header {
-    width: 100%;
-    max-width: 1440px;
-    height: 80px;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    color: black;
-    font-weight: bold;
-    z-index: 2;
-    background: rgba(255, 255, 255, 0.9);
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
 }
 
+body, html {
+   height: 100%;
+   width: 100%;
+   overflow: hidden;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+/* 공통 헤더 스타일 */
+header {
+   width: 100%;
+   max-width: 1440px; /* 최대 너비 고정 */
+   height: 80px;
+   padding: 20px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   position: fixed;
+   top: 0;
+   left: 50%;
+   transform: translateX(-50%);
+   color: black;
+   font-weight: bold;
+   z-index: 2;
+   background: rgba(255, 255, 255, 0.9);
+}
+
+/* 팀명 스타일 */
 .header-left {
-    font-size: 24px;
-    font-family: 'Notable', sans-serif;
+   font-size: 24px;
+   font-family: 'Notable', sans-serif;
 }
 
 .header-right a {
-    font-size: 18px;
-    text-decoration: none;
-    color: black;
-    margin-left: 15px;
-    font-weight: bold;
+   font-size: 18px;
+   text-decoration: none;
+   color: black;
+   margin-left: 15px; /* 링크 간의 간격 추가 */
+   font-weight: bold;
+   transition: color 0.3s;
+   border: none; /* 사각형 박스를 없애기 위해 테두리 제거 */
+   background: none; /* 배경색 제거 */
 }
 
 .header-right a:hover {
-    color: gray;
+   color: gray; /* 호버 시 색상 변경 */
 }
+
 
 /* 메인 콘텐츠 */
 .profile-section {
