@@ -11,7 +11,7 @@
 <body>
     <div class="login-container">
         <div class="header">CODE KIRI</div>
-        <form action="loginController" method="post">
+        <form action="doLogin" method="post">
             <label for="id">ID</label>
             <input type="text" id="id" name="id" class="input-field" />
             
@@ -21,7 +21,9 @@
             <button type="submit" class="login-button">LOGIN</button>
             <button type="button" class="naver-button">NAVER</button>
             <button type="button" class="google-button">GOOGLE</button>
+            <a href="flaskController">
             <button type="button" class="kakao-button">KAKAO</button>
+            </a>
         </form>
     </div>
 </body>
