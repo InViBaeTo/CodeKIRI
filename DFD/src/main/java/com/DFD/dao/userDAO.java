@@ -16,4 +16,11 @@ public class userDAO {
 		session.close();
 		return result;
 	}
+
+	public int join(DFD_USER member) {
+		SqlSession session = factory.openSession(true);
+		int result = session.insert("join", member);
+		session.close();
+		return result;
+	}
 }

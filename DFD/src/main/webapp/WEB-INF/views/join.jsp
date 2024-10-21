@@ -10,7 +10,7 @@
 <body>
     <div class="join-container">
         <div class="header">CODE KIRI</div>
-        <form action="joinController" method="post">
+        <form action="doJoin" method="post">
             <label for="id">ID</label>
             <input type="text" id="id" name="id" class="input-field" />
             
