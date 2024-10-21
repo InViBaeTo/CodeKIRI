@@ -1,61 +1,48 @@
-/* mainPage2.css - 세 번째 섹션 전용 스타일 */
-
-.third-section {
+.second-section {
     display: flex;
     justify-content: center;
-    align-items: center;
     width: 100%;
     height: 100vh;
 }
 
-.third-section .main-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.second-section .main-content {
+    padding: 50px; /* 상하좌우 패딩 추가 */
     max-width: 1440px; /* 최대 너비 고정 */
+    width: 100%; /* 전체 너비 사용 */
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+.second-section .main-image {
+    opacity: 0.8;
     width: 100%;
-    margin: 0 auto;
-    padding: 50px;
-    background-color: white;
-    color: black;
+    max-width: 1440px; /* 헤더와 동일한 최대 너비 설정 */
+    height: calc(100vh - 300px); /* 이미지 높이를 조정 */
+    object-fit: cover;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%); /* 화면 중앙 정렬 */
+    z-index: -1;
 }
 
-.third-section .image-gallery {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
-    max-width: 500px;
+.second-section .text-overlay {
+    position: relative;
+    text-align: center;
 }
 
-.third-section .image-gallery img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-.third-section .description-box {
-    max-width: 500px;
-    padding: 30px;
-    background-color: black;
-    color: white;
-    border-radius: 10px;
-}
-
-.third-section .description-box h1 {
-    font-size: 30px;
+.second-section .text-overlay h1 {
+    position: absolute; /* 위치를 고정하여 이동 가능하게 설정 */
+    bottom: 80%; /* 위치 조정 */
+    left: 50%; /* 중앙 정렬 */
+    transform: translateX(-50%); /* 중앙 정렬 */
+    font-size: 80px;
     font-weight: bold;
-    margin-bottom: 10px;
-    
+
 }
 
-.third-section .description-box p {
+.second-section .text-overlay p {
+    bottom: 60%; /* 화면의 아래쪽에서 60% 위로 이동 */
     font-size: 16px;
     line-height: 1.6;
+    color: rgb(0, 0, 0);
 }
-
-.third-section .description-box .subtitle {
-    font-size: 14px;
-    color: #ccc;
-    margin-bottom: 20px;
-}
-

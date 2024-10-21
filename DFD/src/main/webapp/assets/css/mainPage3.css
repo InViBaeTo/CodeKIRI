@@ -1,6 +1,5 @@
-/* mainPage3.css - 네 번째 섹션 전용 스타일 */
 
-.fourth-section {
+.third-section {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,7 +7,7 @@
     height: 100vh;
 }
 
-.fourth-section .main-content {
+.third-section .main-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -20,34 +19,42 @@
     color: black;
 }
 
-.fourth-section .analysis {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 300px;
-    background-color: black;
-    padding: 30px;
-    border-radius: 10px;
-    color: white;
+.third-section .image-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    max-width: 500px;
 }
 
-.fourth-section .circle-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
+.third-section .image-gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.third-section .description-box {
+    max-width: 500px;
+    padding: 30px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+}
+
+.third-section .description-box h1 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    
+}
+
+.third-section .description-box p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.third-section .description-box .subtitle {
+    font-size: 14px;
+    color: #ccc;
     margin-bottom: 20px;
 }
 
-.fourth-section .analysis h2 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.fourth-section .analysis p {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #ccc;
-    text-align: center;
-}

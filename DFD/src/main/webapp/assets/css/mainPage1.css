@@ -1,152 +1,138 @@
 @charset "UTF-8";
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
 }
 
 body, html {
-	height: 100%;
-	width: 100%;
-	overflow: hidden;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+   height: 100%;
+   width: 100%;
+   overflow: hidden;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 .container {
-	width: 100%;
-	height: 100vh;
-	overflow: hidden;
-	scroll-snap-type: y mandatory;
+   width: 100%;
+   height: 100vh;
+   overflow: hidden;
+   scroll-snap-type: y mandatory;
 }
 
 /* 섹션 공통 스타일 */
 .section {
-	height: 100vh;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	scroll-snap-align: start;
-	position: relative;
+   height: 100vh;
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   scroll-snap-align: start;
+   position: relative;
 }
 
 /* 헤더 스타일 */
 header {
-	width: 100%;
-	max-width: 1440px; /* 최대 너비 고정 */
-	height: 80px;
-	padding: 20px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	position: fixed;
-	top: 0;
-	left: 50%;
-	transform: translateX(-50%);
-	color: black;
-	font-weight: bold;
-	z-index: 2;
-	background: rgba(255, 255, 255, 0.9);
+   width: 100%;
+   max-width: 1440px; /* 최대 너비 고정 */
+   height: 80px;
+   padding: 20px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   position: fixed;
+   top: 0;
+   left: 50%;
+   transform: translateX(-50%);
+   color: black;
+   font-weight: bold;
+   z-index: 2;
+   background: rgba(255, 255, 255, 0.9);
 }
 
 /* 팀명 스타일 */
 .header-left {
-	font-size: 24px;
-	font-family: 'Notable', sans-serif;
+   font-size: 24px;
+   font-family: 'Notable', sans-serif;
 }
 
 .header-right a {
-	font-size: 18px;
-	text-decoration: none;
-	color: black;
-	margin-left: 15px; /* 링크 간의 간격 추가 */
-	font-weight: bold;
-	transition: color 0.3s;
-	border: none; /* 사각형 박스를 없애기 위해 테두리 제거 */
-	background: none; /* 배경색 제거 */
+   font-size: 18px;
+   text-decoration: none;
+   color: black;
+   margin-left: 15px; /* 링크 간의 간격 추가 */
+   font-weight: bold;
+   transition: color 0.3s;
+   border: none; /* 사각형 박스를 없애기 위해 테두리 제거 */
+   background: none; /* 배경색 제거 */
 }
 
 .header-right a:hover {
-	color: gray; /* 호버 시 색상 변경 */
+   color: gray; /* 호버 시 색상 변경 */
 }
 
 /* 첫 번째 섹션 - 메인 이미지 */
 .main-content {
-	padding-top: 100px;
-	max-width: 1440px; /* 최대 너비 고정 */
-	width: 100%;
-	margin: 0 auto;
+   padding-top: 100px;
+   max-width: 1440px; /* 최대 너비 고정 */
+   width: 100%;
+   margin: 0 auto;
 }
 
 .main-image {
-	opacity: 0.8;
-	width: 100%;
-	max-width: 1440px; /* 헤더와 동일한 최대 너비 설정 */
-	height: calc(100vh - 300px); /* 이미지 높이를 200px 조정 */
-	object-fit: cover;
-	position: absolute;
-	top: 100px;
-	left: 50%;
-	transform: translateX(-50%); /* 화면 중앙 정렬 */
-	z-index: -1;
+   width: 100%;
+   max-width: 1440px; /* 헤더와 동일한 최대 너비 설정 */
+   height: calc(100vh - 300px); /* 이미지 높이를 200px 조정 */
+   object-fit: cover;
+   position: absolute;
+   top: 100px;
+   left: 50%;
+   transform: translateX(-50%); /* 화면 중앙 정렬 */
+   z-index: -1;
 }
 
 /* 텍스트 오버레이 */
 .text-overlay {
-	position: relative;
-	text-align: center;
-	color: white;
+   position: relative;
+   text-align: center;
+   color: white;
 }
 
-.text-overlay2 {
-	position: relative;
-	text-align: center;
-	color: black;
-}
 
 h1 {
-	position: absolute; /* 위치를 고정하여 이동 가능하게 설정 */
-	bottom: 50%; /* 화면의 아래쪽에서 50% 위로 이동 */
-	left: 50%; /* 화면의 중앙으로 수평 이동 */
-	transform: translateX(-50%); /* 수평 중앙 정렬 */
-	font-size: 80px;
-	font-weight: bold;
-}
-.text-overlay2 .h1 {
-	position: absolute; /* 위치를 고정하여 이동 가능하게 설정 */
-	bottom: 50%; /* 화면의 아래쪽에서 30% 위로 이동 */
-	left: 30%; /* 화면의 중앙으로 수평 이동 */
-	transform: translateX(-30%); /* 수평 중앙 정렬 */
-	font-size: 80px;
-	font-weight: bold;
+   position: absolute; /* 위치를 고정하여 이동 가능하게 설정 */
+   bottom: 50%; /* 화면의 아래쪽에서 50% 위로 이동 */
+   left: 50%; /* 화면의 중앙으로 수평 이동 */
+   transform: translateX(-50%); /* 수평 중앙 정렬 */
+   font-size: 80px;
+   font-weight: bold;
 }
 
 .question {
-	position: absolute;
-	bottom: 30%;
-	right: 15%;
-	color: white;
-	font-size: 25px;
-	font-weight: bold;
+   position: absolute;
+   bottom: 30%;
+   right: 15%;
+   color: white;
+   font-size: 25px;
+   font-weight: bold;
 }
 
 .scroll-indicator {
-	position: absolute;
-	bottom: 30px;
-	left: 50%;
-	transform: translateX(-50%);
-	font-size: 18px;
-	color: black;
-	text-transform: uppercase;
-	opacity: 0.8;
-	font-family: 'Oleo Script', cursive;
-	transition: opacity 0.3s;
+   position: absolute;
+   bottom: 30px;
+   left: 50%;
+   transform: translateX(-50%);
+   font-size: 18px;
+   color: black;
+   text-transform: uppercase;
+   opacity: 0.8;
+   font-family: 'Oleo Script', cursive;
+   transition: opacity 0.3s;
 }
 
 .scroll-indicator:hover {
-	opacity: 1;
+   opacity: 1;
 }
