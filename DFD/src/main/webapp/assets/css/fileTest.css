@@ -68,19 +68,6 @@ header {
     border-radius: 15px;
 }
 
-/* 미리보기 화면 */
-.preview-screen {
-    width: 300px;
-    height: 400px;
-    background-color: black;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    margin-bottom: 20px;
-}
-
 /* 디스플레이 바 */
 .display-bar {
     width: 100%;
@@ -127,3 +114,24 @@ header {
     color: black;
     border-radius: 10px;
 }
+/* 미리보기 화면 */
+.preview-screen {
+    width: 300px;
+    height: 400px;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+    position: relative; /* 이미지 위치 조정을 위해 추가 */
+}
+
+.preview-screen img {
+    position: absolute; /* 이미지를 미리보기 화면의 중앙에 위치시키기 위해 사용 */
+    top: 100%;
+    left: 100%;
+    transform: translate(-50%, -50%); /* 중앙 정렬 */
+}
+
