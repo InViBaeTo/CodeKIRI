@@ -9,8 +9,9 @@
     <form action="run-python" method="GET">
         <button type="submit">Python 코드 실행</button>
     </form>
-
-    <h3>Flask API 호출 결과:</h3>
-    <p>${apiResult != null ? apiResult : "아직 결과가 없습니다."}</p>
+    <c:if test="${not empty apiResponse}">
+        <h3>Flask API 응답 결과:</h3>
+        <p>${apiResponse}</p>
+    </c:if>
 </body>
 </html>
