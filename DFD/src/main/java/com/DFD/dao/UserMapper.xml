@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.DFD.dao.UserMapper">
+
+	<insert id="join" parameterType="com.DFD.entity.DFD_USER">
+
+		INSERT INTO dfd_user
+		(user_id,
+		user_pw,
+		user_email,
+		joined_at,
+		login_src)
+		VALUES
+		(#{user_id},
+		#{user_pw},
+		#{user_email},
+		sysdate,
+		'local')
+
+	</insert>
+
+
+	<select id="login" resultType="com.DFD.entity.DFD_USER"
+		parameterType="com.DFD.entity.DFD_USER">
+		select *
+		from DFD_USER
+		where user_id = #{user_id}
+		and
+		user_pw = #{user_pw}
+	</select>
+
+</mapper>
