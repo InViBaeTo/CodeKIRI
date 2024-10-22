@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" session="true"%>
+<%@ page import="com.DFD.entity.DFD_USER"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -84,22 +86,22 @@
 				<div class="header-left">CODE KIRI</div>
 				<div class="header-right">
 					<%
-					String result = (String) session.getAttribute("result");
-					if (result != null) { //로그인 상태일때
+					DFD_USER user = (DFD_USER) session.getAttribute("user");
+					if (user != null) { // 로그인 상태일 때
 					%>
-					
-						<a href="${pageContext.request.contextPath}/fileTest">FileTest</a>
+
+					<a href="${pageContext.request.contextPath}/fileTest">FileTest</a>
 					<a href="${pageContext.request.contextPath}/detection">Detection</a>
-					<a href="${pageContext.request.contextPath}/">Logout</a>
-            		<a href="${pageContext.request.contextPath}/myPage">Mypage</a>
+					<a href="${pageContext.request.contextPath}/doLogout">Logout</a> <a
+						href="${pageContext.request.contextPath}/myPage">Mypage</a>
 					<%
 					} else { //비로그인 상태일때
 					%>
-					<a href="${pageContext.request.contextPath}/login">FileTest</a>
-					<a href="${pageContext.request.contextPath}/login">Detection</a>
-					<a href="${pageContext.request.contextPath}/login">Login</a> <a
+					<a href="${pageContext.request.contextPath}/login">FileTest</a> <a
+						href="${pageContext.request.contextPath}/login">Detection</a> <a
+						href="${pageContext.request.contextPath}/login">Login</a> <a
 						href="${pageContext.request.contextPath}/join">Join</a>
-					
+
 					<%
 					}
 					%>

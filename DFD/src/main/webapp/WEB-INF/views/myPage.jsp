@@ -46,37 +46,37 @@
 				<img src="${pageContext.request.contextPath}/img/placeholder.png"
 					alt="Image 1">
 				<div class="image-date">2023/10/01</div>
-				<button class="delete-button">🗑</button>
+				<button class="delete-button">X</button>
 			</div>
 			<div class="image-item">
 				<img src="${pageContext.request.contextPath}/img/placeholder.png"
 					alt="Image 2">
 				<div class="image-date">2023/10/02</div>
-				<button class="delete-button">🗑</button>
+				<button class="delete-button">X</button>
 			</div>
 			<div class="image-item">
 				<img src="${pageContext.request.contextPath}/img/placeholder.png"
 					alt="Image 3">
 				<div class="image-date">2023/10/03</div>
-				<button class="delete-button">🗑</button>
+				<button class="delete-button">X</button>
 			</div>
 			<div class="image-item">
 				<img src="${pageContext.request.contextPath}/img/placeholder.png"
 					alt="Image 4">
 				<div class="image-date">2023/10/04</div>
-				<button class="delete-button">🗑</button>
+				<button class="delete-button">X</button>
 			</div>
 			<div class="image-item">
 				<img src="${pageContext.request.contextPath}/img/placeholder.png"
 					alt="Image 5">
 				<div class="image-date">2023/10/05</div>
-				<button class="delete-button">🗑</button>
+				<button class="delete-button">X</button>
 			</div>
 			<div class="image-item">
 				<img src="${pageContext.request.contextPath}/img/placeholder.png"
 					alt="Image 6">
 				<div class="image-date">2023/10/06</div>
-				<button class="delete-button">🗑</button>
+				<button class="delete-button">X</button>
 			</div>
 		</div>
 
