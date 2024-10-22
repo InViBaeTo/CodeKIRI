@@ -39,8 +39,10 @@ def setup_routes(app):
             image_data = data['image'].split(',')[1]
             image_decoded = base64.b64decode(image_data)
     
-            # 사용자 바탕화면 경로 가져오기
-            user_folder = os.path.join(os.path.expanduser("~"), "Desktop", "testscreenshot")
+            # 현재 사용자 이름을 가져와 바탕화면 경로 설정
+            user_name = os.getenv('USERNAME')  # Windows에서 사용자 이름 가져오기
+            user_folder = f"C:/Users/{user_name}/Desktop/testscreenshot"  # 사용자 바탕화면 경로
+            
             if not os.path.exists(user_folder):
                 os.makedirs(user_folder)
     
@@ -48,9 +50,8 @@ def setup_routes(app):
             with open(file_path, 'wb') as f:
                 f.write(image_decoded)
     
-            # JSON 응답 반환
             return jsonify({"status": "success", "file_path": file_path}), 200
     
         except Exception as e:
-            print(f"Error: {str(e)}")  # 서버 로그에 오류 출력
+            print(f"Error: {str(e)}")
             return jsonify({"status": "error", "message": str(e)}), 500
