@@ -1,5 +1,11 @@
-from flask import jsonify
+from flask import jsonify, Flask, request
 from models import fetch_user_data  # fetch_user_data 함수 import
+import base64
+import os
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)  # CORS 활성화
 
 def setup_routes(app):
     print("라우트를 설정 중입니다...")  # 디버그 메시지 추가
@@ -18,8 +24,36 @@ def setup_routes(app):
         else:
             return jsonify({"error": "사용자 데이터를 가져오는 데 실패했습니다."}), 500
 
-
     @app.route('/test', methods=['GET'])
     def test_route():
         print("테스트 라우트에 접근했습니다.")  # 디버그 메시지 추가
         return "Test route is working!"
+
+    @app.route('/saveScreenshot', methods=['POST'])
+    def save_screenshot():
+        try:
+            data = request.json
+            if not data or 'image' not in data:
+                raise ValueError('잘못된 요청입니다. image 데이터가 없습니다.')
+    
+            image_data = data['image'].split(',')[1]
+            image_decoded = base64.b64decode(image_data)
+            
+            # 현재 사용자 홈 디렉토리 경로 가져오기
+            user_home = os.path.expanduser("~")
+            user_folder = os.path.join(user_home, "Desktop", "testscreenshot")
+            
+            if not os.path.exists(user_folder):
+                os.makedirs(user_folder)
+            
+            file_path = os.path.join(user_folder, 'screenshot.png')
+            with open(file_path, 'wb') as f:
+                f.write(image_decoded)
+            
+            # JSON 응답 반환
+            return jsonify({"status": "success", "file_path": file_path}), 200
+    
+        except Exception as e:
+            # 오류가 발생하면 오류 메시지 반환
+            print(f"Error: {str(e)}")  # 서버 로그에 오류 출력
+            return jsonify({"status": "error", "message": str(e)}), 500

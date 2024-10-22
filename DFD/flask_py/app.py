@@ -1,7 +1,10 @@
 from flask import Flask
+from flask_cors import CORS
 from routes import setup_routes
 
 app = Flask(__name__)
+
+CORS(app)
 
 setup_routes(app)  # routes.py에서 라우트 설정
 
