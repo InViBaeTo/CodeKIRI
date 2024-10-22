@@ -38,22 +38,19 @@ def setup_routes(app):
     
             image_data = data['image'].split(',')[1]
             image_decoded = base64.b64decode(image_data)
-            
-            # 현재 사용자 홈 디렉토리 경로 가져오기
-            user_home = os.path.expanduser("~")
-            user_folder = os.path.join(user_home, "Desktop", "testscreenshot")
-            
+    
+            # 사용자 바탕화면 경로 가져오기
+            user_folder = os.path.join(os.path.expanduser("~"), "Desktop", "testscreenshot")
             if not os.path.exists(user_folder):
                 os.makedirs(user_folder)
-            
+    
             file_path = os.path.join(user_folder, 'screenshot.png')
             with open(file_path, 'wb') as f:
                 f.write(image_decoded)
-            
+    
             # JSON 응답 반환
             return jsonify({"status": "success", "file_path": file_path}), 200
     
         except Exception as e:
-            # 오류가 발생하면 오류 메시지 반환
             print(f"Error: {str(e)}")  # 서버 로그에 오류 출력
             return jsonify({"status": "error", "message": str(e)}), 500

@@ -106,22 +106,24 @@
       
       
         // 스크린샷을 서버로 전송하는 함수
-		function sendScreenshotToServer(screenshot) {
+		function sendScreenshotToServer(screenshot, userFolderPath) {
 		    console.log("서버로 스크린샷 전송 중...");
-		    console.log('${pageContext.request.contextPath}/saveScreenshot');  // 경로를 확인
-
-		    fetch('http://localhost:5000/saveScreenshot', {  // 요청 경로 확인
+		    
+		    fetch('http://192.168.219.115:5000/saveScreenshot', {  
 		        method: 'POST',
 		        headers: {
 		            'Content-Type': 'application/json'
 		        },
-		        body: JSON.stringify({ image: screenshot })
+		        body: JSON.stringify({ 
+		            image: screenshot,
+		            userFolder: userFolderPath // 사용자 폴더 경로 추가
+		        })
 		    })
 		    .then(response => {
 		        if (!response.ok) {
 		            throw new Error('서버 응답에 문제가 있습니다: ' + response.status);
 		        }
-		        return response.json(); // 응답을 JSON으로 변환
+		        return response.json(); 
 		    })
 		    .then(data => {
 		        console.log('스크린샷이 저장되었습니다:', data);
