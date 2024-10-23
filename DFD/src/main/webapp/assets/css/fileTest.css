@@ -130,8 +130,8 @@ header {
 
 .preview-screen img {
     position: absolute; /* 이미지를 미리보기 화면의 중앙에 위치시키기 위해 사용 */
-    top: 100%;
-    left: 100%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%); /* 중앙 정렬 */
 }
 

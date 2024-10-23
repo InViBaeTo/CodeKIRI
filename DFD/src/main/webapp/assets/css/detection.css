@@ -69,19 +69,6 @@ header {
     border-radius: 15px;
 }
 
-/* 사용자 화면 */
-.user-screen {
-    width: 300px;
-    height: 400px;
-    background-color: black;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    margin-bottom: 20px;
-}
-
 /* 디스플레이 바 */
 .display-bar {
     width: 100%;
@@ -105,17 +92,6 @@ header {
     font-size: 16px;
 }
 
-.test-button {
-    width: 60px;
-    height: 40px;
-    margin-left: 10px;
-    background-color: #1ec800;
-    border: none;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-}
 
 /* 결과 표시 바 */
 .result-bar {

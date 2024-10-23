@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="login-container">
-        <div class="header">CODE KIRI</div>
+        <div class="header" onclick="location.href='${pageContext.request.contextPath}/'" style="cursor: pointer;">CODE KIRI</div>
         <form action="doLogin" method="post">
             <label for="id">ID</label>
             <input type="text" id="id" name="id" class="input-field" />
