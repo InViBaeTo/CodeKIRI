@@ -1,4 +1,4 @@
-from flask import jsonify, Flask, request
+from flask import jsonify, Flask, request, redirect, url_for
 from models import fetch_user_data  # fetch_user_data 함수 import
 import base64
 import os
@@ -84,7 +84,25 @@ def setup_routes(app):
             print(f"서버 오류 발생: {str(e)}")  # 디버깅 로그
             return jsonify({"error": f"서버 오류: {str(e)}"}), 500
                 
-            
+    @app.route('/upload', methods=['POST'])
+    def upload_file():
+        UPLOAD_FOLDER = 'C:/Users/smhrd15/Desktop/UPLOAD_FOLDER'
+        app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+        
+        # 폴더가 없으면 생성
+        if not os.path.exists(app.config['UPLOAD_FOLDER']):
+            os.makedirs(app.config['UPLOAD_FOLDER'])
+        
+        if 'file' not in request.files:
+            return "파일이 없습니다", 400
+        file = request.files['file']
+        if file.filename == '':
+            return "파일 이름이 없습니다", 400
+        
+        # 파일을 지정된 폴더에 저장
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+        file.save(file_path)
+        return f"파일이 {file_path}에 저장되었습니다"    
             
             
             

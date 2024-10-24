@@ -51,6 +51,12 @@
 			<%} %>
 		</div>
 	</div>
+	    <h1>파일 업로드</h1>
+		    <form action="http://192.168.219.115:5000/upload" method="post" enctype="multipart/form-data">
+		        <input type="file" name="file"/>
+		        <input type="submit" value="Upload"/>
+		    </form>
+	
 	<script>
 		function previewImage(event) {
 			const file = event.target.files[0]; // 사용자가 선택한 필드 0번째 파일 가져오기
