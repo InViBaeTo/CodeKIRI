@@ -17,5 +17,6 @@
   </environments>
   <mappers>
     <mapper resource="com/DFD/dao/UserMapper.xml"/>
+    <mapper resource="com/DFD/dao/uploadMapper.xml"/>
   </mappers>
 </configuration>
