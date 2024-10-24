@@ -1,48 +1,65 @@
 .second-section {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 100vh;
 }
 
 .second-section .main-content {
-    padding: 50px; /* 상하좌우 패딩 추가 */
-    max-width: 1440px; /* 최대 너비 고정 */
-    width: 100%; /* 전체 너비 사용 */
-    margin: 0 auto; /* 중앙 정렬 */
+	padding: 50px; /* 상하좌우 패딩 추가 */
+	max-width: 1440px; /* 최대 너비 고정 */
+	width: 100%; /* 전체 너비 사용 */
+	height: 400px; /* 높이 */
+	margin: 0 auto; /* 중앙 정렬 */
 }
 
 .second-section .main-image {
-    opacity: 0.8;
-    width: 100%;
-    max-width: 1440px; /* 헤더와 동일한 최대 너비 설정 */
-    height: calc(100vh - 300px); /* 이미지 높이를 조정 */
-    object-fit: cover;
-    position: absolute;
-    top: 100px;
-    left: 50%;
-    transform: translateX(-50%); /* 화면 중앙 정렬 */
-    z-index: -1;
+	opacity: 0.8;
+	width: 100%;
+	max-width: 1440px; /* 헤더와 동일한 최대 너비 설정 */
+	height: calc(100vh - 300px); /* 이미지 높이를 조정 */
+	object-fit: cover;
+	position: absolute;
+	top: 100px;
+	left: 50%;
+	transform: translateX(-50%); /* 화면 중앙 정렬 */
+	z-index: -1;
 }
 
 .second-section .text-overlay {
-    position: relative;
-    text-align: center;
+	position: relative;
+	text-align: left; /* 좌측 정렬 */
 }
 
 .second-section .text-overlay h1 {
-    position: absolute; /* 위치를 고정하여 이동 가능하게 설정 */
-    bottom: 80%; /* 위치 조정 */
-    left: 50%; /* 중앙 정렬 */
-    transform: translateX(-50%); /* 중앙 정렬 */
-    font-size: 80px;
-    font-weight: bold;
-
+	position: relative; /* 위치를 고정하여 이동 가능하게 설정 */
+	bottom: 50px; /* 위치 조정 */
+	left: 50%;
+	font-size: 126px;
+	font-weight: bold;
 }
 
-.second-section .text-overlay p {
-    bottom: 60%; /* 화면의 아래쪽에서 60% 위로 이동 */
-    font-size: 16px;
-    line-height: 1.6;
-    color: rgb(0, 0, 0);
+.second-section .text-overlay p1 {
+	position: relative;/* 위치를 고정하여 이동 가능하게 설정 */
+	padding:20px;
+	bottom: 10px; 
+	right: 18px;
+	font-size: 60px;
+	line-height: 1.6;
+	color: rgb(0, 0, 0);
+	font-family: 'Black Han Sans', sans-serif;
+}
+.second-section .text-overlay p2 {
+	position: relative;/* 위치를 고정하여 이동 가능하게 설정 */
+	bottom: 5px;
+	left: 2px;
+	font-size: 30px;
+	line-height: 1.6;
+	color: rgb(0, 0, 0);
+	text-align: left; /* 좌측 정렬 추가 */
+	font-family: 'Do Hyeon', sans-serif;
+}
+
+.second-section .text-overlay .highlight {
+	color: white; /*글자를 흰색으로 지정*/
 }

@@ -39,8 +39,16 @@
 					onchange="previewImage(event)" required />
 				<button class="test-button">TEST</button>
 			</div>
-			<div class="result-bar">딥페이크의 확률이 낮습니다</div>
+			<% // accuracy는 딥페이크 확률값을 불러오고 넣어둘 변숨
+			// 따로 확률을 보여주는 것 또한 생각중입니다
+			int accuracy = 0;
+			if(accuracy >= 80){ %>
 			<div class="result-bar">딥페이크의 확률이 높습니다</div>
+			<%} else if(accuracy < 80) {%>
+			<div class="result-bar">딥페이크의 확률이 낮습니다</div>
+			<%} else {%>
+			<div class="result-bar"> 사진을 넣어주세요</div>
+			<%} %>
 		</div>
 	</div>
 	<script>
