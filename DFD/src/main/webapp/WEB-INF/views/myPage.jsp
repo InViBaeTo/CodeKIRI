@@ -25,7 +25,7 @@
 			<div class="header-right">
 				<a href="${pageContext.request.contextPath}/fileTest">FileTest</a> <a
 					href="${pageContext.request.contextPath}/detection">Detection</a> <a
-					href="${pageContext.request.contextPath}/">Logout</a> <a
+					href="${pageContext.request.contextPath}/doLogout">Logout</a> <a
 					href="${pageContext.request.contextPath}/myPage">Mypage</a>
 			</div>
 		</header>

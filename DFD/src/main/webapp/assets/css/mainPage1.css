@@ -102,7 +102,7 @@ header {
 }
 
 
-h1 {
+.text-overlay h1 {
    position: absolute; /* 위치를 고정하여 이동 가능하게 설정 */
    bottom: 50%; /* 화면의 아래쪽에서 50% 위로 이동 */
    left: 50%; /* 화면의 중앙으로 수평 이동 */
