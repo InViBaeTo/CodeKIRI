@@ -1,4 +1,4 @@
-from flask import jsonify, Flask, request
+from flask import jsonify, Flask, request, redirect, url_for
 from models import fetch_user_data  # fetch_user_data 함수 import
 import base64
 import os
@@ -55,3 +55,57 @@ def setup_routes(app):
         except Exception as e:
             print(f"Error: {str(e)}")
             return jsonify({"status": "error", "message": str(e)}), 500
+    
+    @app.route('/saveVideo', methods=['POST'])
+    def save_video():
+        try:
+            print("비디오 저장 요청 수신")  # 디버깅 로그
+            user_name = request.form.get('user_name', 'default_user')
+            video_folder = f'C:/Users/{user_name}/Desktop/testvideo'
+            print(f"비디오 저장 폴더: {video_folder}")  # 디버깅 로그
+            os.makedirs(video_folder, exist_ok=True)
+    
+            if 'video' not in request.files:
+                print("비디오 파일이 요청에 없음")  # 디버깅 로그
+                return jsonify({"error": "요청에 비디오 파일이 없습니다."}), 400
+    
+            video_file = request.files['video']
+            if video_file.filename == '':
+                print("선택된 비디오 파일 없음")  # 디버깅 로그
+                return jsonify({"error": "선택된 비디오 파일이 없습니다."}), 400
+    
+            # 비디오 파일 저장
+            video_path = os.path.join(video_folder, video_file.filename)
+            print(f"비디오 저장 경로: {video_path}")  # 디버깅 로그
+            video_file.save(video_path)
+    
+            return jsonify({"message": "비디오가 성공적으로 저장되었습니다!", "path": video_path}), 200
+        except Exception as e:
+            print(f"서버 오류 발생: {str(e)}")  # 디버깅 로그
+            return jsonify({"error": f"서버 오류: {str(e)}"}), 500
+                
+    @app.route('/upload', methods=['POST'])
+    def upload_file():
+        UPLOAD_FOLDER = 'C:/Users/smhrd15/Desktop/UPLOAD_FOLDER'
+        app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+        
+        # 폴더가 없으면 생성
+        if not os.path.exists(app.config['UPLOAD_FOLDER']):
+            os.makedirs(app.config['UPLOAD_FOLDER'])
+        
+        if 'file' not in request.files:
+            return "파일이 없습니다", 400
+        file = request.files['file']
+        if file.filename == '':
+            return "파일 이름이 없습니다", 400
+        
+        # 파일을 지정된 폴더에 저장
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+        file.save(file_path)
+        return f"파일이 {file_path}에 저장되었습니다"    
+            
+            
+            
+            
+            
+            

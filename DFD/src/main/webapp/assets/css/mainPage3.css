@@ -27,34 +27,47 @@
 }
 
 .third-section .image-gallery img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
+    width: 200px; /* 각 사진의 너비 */
+    height: auto; /* 비율에 맞춰 높이 자동 조정 */
 }
 
 .third-section .description-box {
-    max-width: 500px;
+	position: relative;
+    max-width: 50%;
+    width: 50%;
+    height: 650px;
     padding: 30px;
     background-color: black;
     color: white;
-    border-radius: 10px;
 }
 
 .third-section .description-box h1 {
-    font-size: 30px;
+	position: relative;
+	top :11px;
+    font-size: 80px;
     font-weight: bold;
     margin-bottom: 10px;
-    
+    color: white;
+    text-align: right; /* 우측 정렬 추가 */
+    font-family: 'Koulen', sans-serif;
 }
 
 .third-section .description-box p {
-    font-size: 16px;
     line-height: 1.6;
 }
 
-.third-section .description-box .subtitle {
-    font-size: 14px;
-    color: #ccc;
-    margin-bottom: 20px;
+.third-section .text1{
+	position: relative;
+	font-size: 20px;
+	text-align: right; /* 우측 정렬 추가 */
+	font-family: 'Do Hyeon', sans-serif;
+	
+}
+.third-section .text2{
+	position: relative;
+	top: 110px;
+	font-size: 28px;
+	text-align: left; /* 좌측 정렬 추가 */
+	font-family: 'Do Hyeon', sans-serif;
 }
 

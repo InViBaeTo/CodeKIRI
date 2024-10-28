@@ -12,6 +12,12 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Koulen&family=Goldman&family=Notable&family=Oleo+Script&display=swap"
 	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
+	rel="stylesheet">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/mainPage1.css" />
 <link rel="stylesheet"
@@ -49,9 +55,10 @@
 					alt="Deepfake Detector" class="main-image">
 				<div class="text-overlay">
 					<h1>DEEPFAKE</h1>
-					<p class="subtitle">당신이 마주하는 화면너머의 진실</p>
-					<p class="description">딥페이크 디텍터는 여러분의 신변 안전을 위하여 언제나 진실을 찾기 위해
-						노력합니다.</p>
+					<p1> <span class="highlight">당신이 마주하는</span>화면너머의 진실</p1>
+					<br>
+					<p2>딥페이크 디텍터는 <span class="highlight">여러분의 신변</span> 안전을 위하여<br>
+					언제나 <span class="highlight">진실</span>을 찾기 위해 노력합니다.</p2>
 				</div>
 			</div>
 			<div class="scroll-indicator">scroll</div>
@@ -62,19 +69,25 @@
 			<div class="main-content">
 				<!-- 이미지 갤러리 -->
 				<div class="image-gallery">
-					<img src="${pageContext.request.contextPath}/img/face3.jpg"
+					<img src="${pageContext.request.contextPath}/img/face6.jpg"
 						alt="Face 1"> <img
 						src="${pageContext.request.contextPath}/img/face4.jpg"
 						alt="Face 2"> <img
 						src="${pageContext.request.contextPath}/img/face5.png"
-						alt="Face 3">
+						alt="Face 3"> <img
+						src="${pageContext.request.contextPath}/img/face3.jpg"
+						alt="Face 4">
 				</div>
 				<!-- 설명 박스 -->
 				<div class="description-box">
 					<h1>DETECTOR</h1>
-					<p class="subtitle">CODE KIRI는 AI 시대에 맞춰 딥페이크를 연구하고 개발하는 팀입니다.</p>
-					<p>AI가 발전하여 화면너머의 사람마저 감출 수 있는 상황에 맞추어 딥페이크를 검출하고 이용자에게 진실을
-						알려주기 위해 이 프로그램이 개발 되었습니다.</p>
+					<p class="text1">
+						CODE KIRI는 AI 시대에 맞춰<br>딥페이크를 연구하고 개발하는 팀입니다.
+					</p>
+					<p class="text2">
+						AI가 발전하여 화면너머의 사람마저<br>감출 수 있는 상황에 맞추어<br>딥페이크를 검출하고
+						이용자에게 진실을 알려주기 위해<br>이 프로그램이 개발 되었습니다.
+					</p>
 				</div>
 			</div>
 			<div class="scroll-indicator">scroll</div>

@@ -58,7 +58,7 @@ header {
 
 /* 메인 콘텐츠 */
 .profile-section {
-    width: 100%;
+    width: calc(100vh - 300px);
     max-width: 800px;
     margin-top: 120px;
     background-color: #f2f2f2;
@@ -79,6 +79,12 @@ header {
     font-size: 18px;
     font-weight: bold;
 }
+
+.image-main {
+	height: 100%;
+	width: 100%;
+	
+};
 
 .image-gallery {
     display: grid;
@@ -111,15 +117,3 @@ header {
     cursor: pointer;
 }
 
-/* 페이지네이션 */
-.pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.pagination a {
-    padding: 10px;
-    margin: 0 5px;
-    font-weight: bold;
-}
