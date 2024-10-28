@@ -1,3 +1,4 @@
+<%@page import="com.DFD.entity.DFD_USER"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="javax.servlet.http.HttpSession"%>
@@ -60,9 +61,14 @@
 			%>
 		</div>
 	</div>
-
+	
+	<%DFD_USER user = (DFD_USER)session.getAttribute("user"); %>
+	<%String user_id = user.getUser_id(); %>
 
 	<script>
+	
+	var user = "<%= user_id %>" ;
+	
     let mediaRecorder;
     let recordedChunks = [];
     let isRecording = false;
@@ -80,6 +86,9 @@
         const liveVideoElement = document.getElementById('liveScreenVideo');
         liveVideoElement.srcObject = stream;
         liveVideoElement.play(); // 비디오 재생
+        
+        // 녹화 시작 시 테두리 색상 변경
+        liveVideoElement.classList.add('red-border'); // 붉은 테두리 추가
 
         mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm; codecs=vp9',});
         
@@ -121,10 +130,15 @@
             
             // 서버로 비디오 파일 전송
             const formData = new FormData();
+<<<<<<< HEAD
+            formData.append('video', videoFile);
+            formData.append('user_name', user); // 사용자 이름
+=======
             formData.append('video', blob, videoFileName);
             formData.append('user_name', 'smhrd15'); // 사용자 이름
             
             
+>>>>>>> branch 'main' of https://github.com/InViBaeTo/CodeKIRI.git
 
             try {
                 const response = await fetch('http://192.168.219.115:5000/saveVideo', {
@@ -164,6 +178,10 @@
     document.getElementById('stopButton').addEventListener('click', () => {
         if (isRecording) {
             mediaRecorder.stop();
+            
+            const liveVideoElement = document.getElementById('liveScreenVideo');
+            liveVideoElement.classList.remove('red-border'); // 녹화 종료 시 붉은 테두리 제거
+            
             isRecording = false;
             document.getElementById('startButton').disabled = false;
             document.getElementById('stopButton').disabled = true;
