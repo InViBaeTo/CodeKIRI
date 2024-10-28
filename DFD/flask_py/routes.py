@@ -3,6 +3,7 @@ from models import fetch_user_data  # fetch_user_data 함수 import
 import base64
 import os
 from flask_cors import CORS
+import subprocess
 
 app = Flask(__name__)
 CORS(app)  # CORS 활성화
@@ -76,14 +77,26 @@ def setup_routes(app):
     
             # 비디오 파일 저장
             video_path = os.path.join(video_folder, video_file.filename)
-            print(f"비디오 저장 경로: {video_path}")  # 디버깅 로그
+            print(f"비디오 저장 경로: {video_path.replace('\\', '/')}")  # 디버깅 로그
             video_file.save(video_path)
     
-            return jsonify({"message": "비디오가 성공적으로 저장되었습니다!", "path": video_path}), 200
+            # ffmpeg를 이용해 webm 파일을 mp4로 변환
+            mp4_file_path = video_path.replace('.webm', '.mp4')
+            try:
+                subprocess.run(['ffmpeg', '-i', video_path, mp4_file_path], check=True)
+                print(f"MP4로 변환 완료: {mp4_file_path.replace('\\', '/')}")  # 디버깅 로그
+            except subprocess.CalledProcessError as e:
+                print(f"비디오 변환 중 오류 발생: {str(e)}")  # 디버깅 로그
+                return jsonify({"error": f"비디오 변환 중 오류 발생: {str(e)}"}), 500
+    
+            return jsonify({"message": "비디오가 성공적으로 저장되고 변환되었습니다!", "mp4_path": mp4_file_path.replace('\\', '/')}), 200
         except Exception as e:
             print(f"서버 오류 발생: {str(e)}")  # 디버깅 로그
             return jsonify({"error": f"서버 오류: {str(e)}"}), 500
-                
+            
+
+
+       
     @app.route('/upload', methods=['POST'])
     def upload_file():
         UPLOAD_FOLDER = 'C:/Users/smhrd15/Desktop/UPLOAD_FOLDER'
