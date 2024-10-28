@@ -1,4 +1,6 @@
 
+<%@page import="java.util.List"%>
+<%@page import="com.DFD.entity.DFD_UPLOAD"%>
 <%@page import="com.DFD.entity.DFD_USER"%>
 <%@page import="com.DFD.dao.userDAO"%>
 <%@page import="org.apache.catalina.User"%>
@@ -49,16 +51,24 @@
 		</div>
 
 		<!-- 이미지 목록 -->
+		
+		<%
+		List<DFD_UPLOAD> upload = (List<DFD_UPLOAD>)session.getAttribute("Image");
+		%>
+		
+		<% for(DFD_UPLOAD x : upload){ %>
+		
 		<div class="image-main">
 			<div class="image-gallery">
 				<div class="image-item">
-					<img src="${pageContext.request.contextPath}/img/placeholder.png"
+					<img src="save/<%=x.getFile_rname() %>"
 						alt="Image 1">
-					<div class="image-date">2023/10/01</div>
+					<div class="image-date"><%=x.getUploaded_at() %></div>
 					<button class="delete-button">X</button>
 				</div>
 			</div>
 		</div>
+				<% }%>
 
 	</div>
 
