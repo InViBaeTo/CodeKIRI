@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="javax.servlet.http.HttpSession" %>
+<%@ page import="javax.servlet.http.HttpSession"%>
 
 
 <!DOCTYPE html>
@@ -26,7 +26,7 @@
 			<div class="header-right">
 				<a href="${pageContext.request.contextPath}/fileTest">FileTest</a> <a
 					href="${pageContext.request.contextPath}/detection">Detection</a> <a
-					href="${pageContext.request.contextPath}/doLogout">Logout</a> <a
+					href="${pageContext.request.contextPath}/">Logout</a> <a
 					href="${pageContext.request.contextPath}/myPage">Mypage</a>
 			</div>
 		</header>
@@ -35,23 +35,33 @@
 		<div class="main-content">
 			<h1>실시간 화면 캡처</h1>
 
-			<button id="startCapture">공유 화면 설정</button>
-
-			<div class="detection-bar">
-				<div id="detection-message" class="detection-message">딥페이크 사용
-					의심이 됩니다</div>
-			</div>
+			<video id="liveScreenVideo" autoplay playsinline
+				style="width: 80%; margin-top: 20px; border: 3px solid black;">
+			</video>
+			<button id="startButton">녹화 시작</button>
+			<button id="stopButton" disabled>녹화 중지</button>
+			<%
+			// accuracy는 딥페이크 확률값을 불러오고 넣어둘 변수
+			// 따로 확률을 보여주는 것 또한 생각중입니다
+			int accuracy = 0;
+			if (accuracy >= 80) {
+			%>
+			<div class="result-bar">딥페이크의 확률이 높습니다</div>
+			<%
+			} else if (accuracy < 80) {
+			%>
+			<div class="result-bar">딥페이크의 확률이 낮습니다</div>
+			<%
+			} else {
+			%>
+			<div class="result-bar">파일을 넣어주세요</div>
+			<%
+			}
+			%>
 		</div>
-		
-		<button id="startButton">녹화 시작</button>
-	    <button id="stopButton" disabled>녹화 중지</button>
-	    <video id="video" controls></video>
-		
-		<video id="liveScreenVideo" autoplay playsinline
-    	style="width: 80%; margin-top: 20px; border: 3px solid black;">
-    	</video>
-		
-		
+	</div>
+
+
 	<script>
     let mediaRecorder;
     let recordedChunks = [];
@@ -70,6 +80,9 @@
         const liveVideoElement = document.getElementById('liveScreenVideo');
         liveVideoElement.srcObject = stream;
         liveVideoElement.play(); // 비디오 재생
+        
+     	// 녹화 시작 시 테두리 색상 변경
+        liveVideoElement.classList.add('red-border');
 
         mediaRecorder = new MediaRecorder(stream);
 
@@ -157,6 +170,11 @@
     document.getElementById('stopButton').addEventListener('click', () => {
         if (isRecording) {
             mediaRecorder.stop();
+            
+         	// 녹화 종료 시 테두리 색상 변경
+            const liveVideoElement = document.getElementById('liveScreenVideo');
+            liveVideoElement.classList.remove('red-border');
+            
             isRecording = false;
             document.getElementById('startButton').disabled = false;
             document.getElementById('stopButton').disabled = true;
@@ -232,7 +250,7 @@
         });
     }
 </script>
-	
-	        
+
+
 </body>
 </html>
