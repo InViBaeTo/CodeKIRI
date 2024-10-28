@@ -80,6 +80,9 @@
         const liveVideoElement = document.getElementById('liveScreenVideo');
         liveVideoElement.srcObject = stream;
         liveVideoElement.play(); // 비디오 재생
+        
+        // 녹화 시작 시 테두리 색상 변경
+        liveVideoElement.classList.add('red-border'); // 붉은 테두리 추가
 
         mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm; codecs=vp9',});
         
@@ -164,6 +167,10 @@
     document.getElementById('stopButton').addEventListener('click', () => {
         if (isRecording) {
             mediaRecorder.stop();
+            
+            const liveVideoElement = document.getElementById('liveScreenVideo');
+            liveVideoElement.classList.remove('red-border'); // 녹화 종료 시 붉은 테두리 제거
+            
             isRecording = false;
             document.getElementById('startButton').disabled = false;
             document.getElementById('stopButton').disabled = true;
