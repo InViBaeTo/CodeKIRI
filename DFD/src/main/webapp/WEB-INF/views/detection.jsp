@@ -64,10 +64,13 @@
 	
 	<%DFD_USER user = (DFD_USER)session.getAttribute("user"); %>
 	<%String user_id = user.getUser_id(); %>
-
+	
+        
 	<script>
 	
-	var name = "<%= user_id %>" ;
+	var name = "<%= user_id %>";
+	console.log("유저 아이디:", name);
+	
 	
     let mediaRecorder;
     let recordedChunks = [];
