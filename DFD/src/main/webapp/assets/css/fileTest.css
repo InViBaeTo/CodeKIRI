@@ -72,6 +72,7 @@ header {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    justify-content: center; /* 중앙 정렬 추가 */
 }
 
 
@@ -100,7 +101,7 @@ header {
 }
 /* 미리보기 화면 */
 .preview-screen {
-    width: 300px;
+    width: 600px;
     height: 400px;
     background-color: black;
     color: white;

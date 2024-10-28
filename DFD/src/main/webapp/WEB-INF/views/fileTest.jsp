@@ -22,7 +22,7 @@
 			<div class="header-right">
 				<a href="${pageContext.request.contextPath}/fileTest">FileTest</a> <a
 					href="${pageContext.request.contextPath}/detection">Detection</a> <a
-					href="${pageContext.request.contextPath}/">Logout</a> <a
+					href="${pageContext.request.contextPath}/doLogout">Logout</a> <a
 					href="${pageContext.request.contextPath}/myPage">Mypage</a>
 			</div>
 		</header>
@@ -37,8 +37,8 @@
 			<div class="display-bar">
 				<form action="http://192.168.219.115:5000/upload" method="post"
 					enctype="multipart/form-data">
-					<input type="file" name="file" /> <input type="submit"
-						value="Upload" />
+					<input type="file" name="file" onchange="previewImage(event)" /> 
+					<input type="submit" value="Upload" />
 				</form>
 			</div>
 			<%
@@ -61,8 +61,6 @@
 			%>
 		</div>
 	</div>
-
-
 
 	<script>
 		function previewImage(event) {
