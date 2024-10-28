@@ -1,3 +1,4 @@
+<%@page import="com.DFD.entity.DFD_USER"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="javax.servlet.http.HttpSession"%>
@@ -60,9 +61,14 @@
 			%>
 		</div>
 	</div>
-
+	
+	<%DFD_USER user = (DFD_USER)session.getAttribute("user"); %>
+	<%String user_id = user.getUser_id(); %>
 
 	<script>
+	
+	var user = "<%= user_id %>" ;
+	
     let mediaRecorder;
     let recordedChunks = [];
     let isRecording = false;
@@ -130,7 +136,7 @@
             // 서버로 비디오 파일 전송
             const formData = new FormData();
             formData.append('video', videoFile);
-            formData.append('user_name', 'smhrd15'); // 사용자 이름
+            formData.append('user_name', user); // 사용자 이름
 
             try {
                 const response = await fetch('http://192.168.219.115:5000/saveVideo', {
