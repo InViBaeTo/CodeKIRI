@@ -67,7 +67,7 @@
 
 	<script>
 	
-	var name = "<%= user_id %>" ;
+	var name = '<%= user_id %>' ;
 	
     let mediaRecorder;
     let recordedChunks = [];
@@ -137,7 +137,7 @@
             const formData = new FormData();
             formData.append('video', videoFile);
             formData.append('user_name', 'smhrd15'); // 사용자 이름
-            formData.append('user_folder',name)
+            formData.append('user_folder',name);
 
             try {
                 const response = await fetch('http://192.168.219.115:5000/saveVideo', {
