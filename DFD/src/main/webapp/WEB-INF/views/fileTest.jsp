@@ -35,13 +35,14 @@
 					style="display: none; max-width: 100%; max-height: 100%;" />
 			</div>
 			<div class="display-bar">
-				<label for="fileInput">IMG File</label> <input type="file"
-					id="fileInput" name="fileInput" accept="image/*"
-					onchange="previewImage(event)" required />
-				<button class="test-button">TEST</button>
+				<form action="http://192.168.219.115:5000/upload" method="post"
+					enctype="multipart/form-data">
+					<input type="file" name="file" /> <input type="submit"
+						value="Upload" />
+				</form>
 			</div>
 			<%
-			// accuracy는 딥페이크 확률값을 불러오고 넣어둘 변숨
+			// accuracy는 딥페이크 확률값을 불러오고 넣어둘 변수
 			// 따로 확률을 보여주는 것 또한 생각중입니다
 			int accuracy = 0;
 			if (accuracy >= 80) {
@@ -54,17 +55,14 @@
 			<%
 			} else {
 			%>
-			<div class="result-bar">사진을 넣어주세요</div>
+			<div class="result-bar">파일을 넣어주세요</div>
 			<%
 			}
 			%>
 		</div>
 	</div>
 
-	<form action="http://192.168.219.115:5000/upload" method="post"
-		enctype="multipart/form-data">
-		<input type="file" name="file" /> <input type="submit" value="Upload" />
-	</form>
+
 
 	<script>
 		function previewImage(event) {

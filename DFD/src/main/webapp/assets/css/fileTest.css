@@ -56,8 +56,7 @@ header {
 
 /* 메인 콘텐츠 */
 .main-content {
-    width: 100%;
-    max-width: 800px;
+    width: 1400px;
     margin-top: 120px;
     display: flex;
     flex-direction: column;
@@ -65,7 +64,6 @@ header {
     justify-content: center;
     background-color: #f2f2f2;
     padding: 50px;
-    border-radius: 15px;
 }
 
 /* 디스플레이 바 */
@@ -76,20 +74,6 @@ header {
     margin-bottom: 20px;
 }
 
-.display-bar label {
-    font-size: 14px;
-    font-weight: bold;
-    margin-right: 10px;
-}
-
-.display-input {
-    flex-grow: 1;
-    height: 40px;
-    background-color: #d3d3d3;
-    border: none;
-    padding-left: 10px;
-    font-size: 16px;
-}
 
 .test-button {
     width: 60px;
