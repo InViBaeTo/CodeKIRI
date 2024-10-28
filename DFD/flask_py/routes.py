@@ -62,7 +62,7 @@ def setup_routes(app):
         try:
             print("비디오 저장 요청 수신")  # 디버깅 로그
             user_name = request.form.get('user_name', 'default_user')
-            video_folder = f'C:/Users/{user_name}/Desktop/testvideo'
+            video_folder = f'C:/Users/{user_name}/Desktop/DFD_video/{user_folder}'
             print(f"비디오 저장 폴더: {video_folder}")  # 디버깅 로그
             os.makedirs(video_folder, exist_ok=True)
     
@@ -100,7 +100,7 @@ def setup_routes(app):
             try:
                 notebook_path = "C:/Users/smhrd15/CViT-model/run.ipynb"
                 result_file = os.path.join(video_folder, 'result.json')  # 결과를 저장할 파일 경로
-                subprocess.run(['jupyter', 'nbconvert', '--to', 'notebook', '--execute', '--output', result_file, 'run.ipynb'], check=True)
+                subprocess.run(['jupyter', 'nbconvert', '--to', 'notebook', '--execute', '--output', result_file, notebook_path], check=True)
                 print("Jupyter Notebook 실행 완료")  # 디버깅 로그
                 
                 # 결과 파일 읽기
