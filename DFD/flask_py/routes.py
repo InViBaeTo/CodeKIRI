@@ -94,6 +94,27 @@ def setup_routes(app):
             print(f"서버 오류 발생: {str(e)}")  # 디버깅 로그
             return jsonify({"error": f"서버 오류: {str(e)}"}), 500
             
+            
+            
+            # mp4 변환이 완료된 후 Jupyter Notebook 실행
+            try:
+                notebook_path = "C:/Users/smhrd15/CViT-model/run.ipynb"
+                result_file = os.path.join(video_folder, 'result.json')  # 결과를 저장할 파일 경로
+                subprocess.run(['jupyter', 'nbconvert', '--to', 'notebook', '--execute', '--output', result_file, 'run.ipynb'], check=True)
+                print("Jupyter Notebook 실행 완료")  # 디버깅 로그
+                
+                # 결과 파일 읽기
+                with open(result_file, 'r', encoding='utf-8') as f:
+                    result_data = json.load(f)
+                    
+                return jsonify({"message": "비디오가 성공적으로 저장, 변환, 처리되었습니다!", "result": result_data}), 200
+            except subprocess.CalledProcessError as e:
+                print(f"Jupyter Notebook 실행 오류: {str(e)}")  # 디버깅 로그
+                return jsonify({"error": f"Jupyter Notebook 실행 중 오류 발생: {str(e)}"}), 500
+    
+        except Exception as e:
+            print(f"서버 오류 발생: {str(e)}")  # 디버깅 로그
+            return jsonify({"error": f"서버 오류: {str(e)}"}), 500
 
 
        
