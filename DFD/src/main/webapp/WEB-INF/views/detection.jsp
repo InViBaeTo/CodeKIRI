@@ -68,9 +68,13 @@
         
 	<script>
 	
+<<<<<<< HEAD
 	var name = "<%= user_id %>";
 	console.log("유저 아이디:", name);
 	
+=======
+	var name = '<%= user_id %>' ;
+>>>>>>> branch 'main' of https://github.com/InViBaeTo/CodeKIRI.git
 	
     let mediaRecorder;
     let recordedChunks = [];
@@ -140,7 +144,7 @@
             const formData = new FormData();
             formData.append('video', videoFile);
             formData.append('user_name', 'smhrd15'); // 사용자 이름
-            formData.append('user_folder',name)
+            formData.append('user_folder',name);
 
             try {
                 const response = await fetch('http://192.168.219.115:5000/saveVideo', {
