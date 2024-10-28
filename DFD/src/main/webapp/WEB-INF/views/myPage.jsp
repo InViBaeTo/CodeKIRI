@@ -43,9 +43,9 @@
 				</div>
 				<div class="profile-details">
 					<div class="email">
-						이메일:<%=user.getUser_email()%></div>
+						이메일 : <%=user.getUser_email()%></div>
 					<div class="signup-date">
-						가입일:<%=user.getJoined_at()%></div>
+						가입일 : <%=user.getJoined_at()%></div>
 				</div>
 			</div>
 		</div>
