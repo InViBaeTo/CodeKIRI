@@ -62,6 +62,7 @@ def setup_routes(app):
         try:
             print("비디오 저장 요청 수신")  # 디버깅 로그
             user_name = request.form.get('user_name', 'default_user')
+            user_folder = request.form.get('user_folder')
             video_folder = f'C:/Users/{user_name}/Desktop/DFD_video/{user_folder}'
             print(f"비디오 저장 폴더: {video_folder}")  # 디버깅 로그
             os.makedirs(video_folder, exist_ok=True)
