@@ -67,13 +67,13 @@
 
 	<script>
 	
-	var user = "<%= user_id %>" ;
+	var name = "<%= user_id %>" ;
 	
     let mediaRecorder;
     let recordedChunks = [];
     let isRecording = false;
     let stream; // 화면 공유 스트림을 저장할 변수
-    
+    //mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm; codecs=vp9' });
 	//영상 타입 지정, mp4 파일을 바로 생성하지 못하고 변환이 필요함
     
     
@@ -87,12 +87,10 @@
         liveVideoElement.srcObject = stream;
         liveVideoElement.play(); // 비디오 재생
         
-        // 녹화 시작 시 테두리 색상 변경
-        liveVideoElement.classList.add('red-border'); // 붉은 테두리 추가
+     	// 녹화 시작 시 테두리 색상 변경
+        liveVideoElement.classList.add('red-border');
 
-        mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm; codecs=vp9',});
-        
-        
+        mediaRecorder = new MediaRecorder(stream);
 
         mediaRecorder.ondataavailable = (event) => {
             if (event.data.size > 0) {
@@ -101,44 +99,44 @@
         };
 
         // 파일 이름 시간대로 지정
-    mediaRecorder.onstop = async () => {
-            const blob = new Blob(recordedChunks, { type: 'video/webm', });
-            
+        mediaRecorder.onstop = async () => {
+            const blob = new Blob(recordedChunks, { type: 'video/mp4' });
+            let videoFile = new File([blob], 'recording.mp4', { type: 'video/mp4' });
 
-         	// 현재 시간을 이용해 타임스탬프 생성
+            // 현재 시간을 가져와 타임스탬프 생성
             const date = new Date();
             const year = date.getFullYear();
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const day = String(date.getDate()).padStart(2, '0');
-            const hours = String(date.getHours()).padStart(2, '0');
-            const minutes = String(date.getMinutes()).padStart(2, '0');
-            const seconds = String(date.getSeconds()).padStart(2, '0');
+            const month = date.getMonth() + 1; // 0부터 시작하므로 1을 더해줌
+            const day = date.getDate();
+            const hours = date.getHours();
+            const minutes = date.getMinutes();
+            const seconds = date.getSeconds();
+
+            // 각 값을 padStart로 두 자리 수로 맞추고 문자열로 변환
+            const paddedMonth = String(month).padStart(2, '0');
+            const paddedDay = String(day).padStart(2, '0');
+            const paddedHours = String(hours).padStart(2, '0');
+            const paddedMinutes = String(minutes).padStart(2, '0');
+            const paddedSeconds = String(seconds).padStart(2, '0');
 
             // 타임스탬프 생성
-            const timestamp = year + month + day + hours + minutes + seconds;
+            const timestamp = year + paddedMonth + paddedDay + paddedHours + paddedMinutes + paddedSeconds;
 
             // 타임스탬프 로그 출력 (디버깅)
             console.log('생성된 타임스탬프:', timestamp);
 
             // 타임스탬프를 파일명에 추가
-            const videoFileName = 'recording_' + timestamp + '.webm';
+            const videoFileName = 'recording_' + timestamp + '.mp4';
 
             // 파일 이름 로그 출력 (디버깅)
             console.log('생성된 파일 이름:', videoFileName);
 			
-      
+            videoFile = new File([blob], videoFileName, { type: 'video/mp4' });
             
             // 서버로 비디오 파일 전송
             const formData = new FormData();
-<<<<<<< HEAD
             formData.append('video', videoFile);
-            formData.append('user_name', user); // 사용자 이름
-=======
-            formData.append('video', blob, videoFileName);
             formData.append('user_name', 'smhrd15'); // 사용자 이름
-            
-            
->>>>>>> branch 'main' of https://github.com/InViBaeTo/CodeKIRI.git
 
             try {
                 const response = await fetch('http://192.168.219.115:5000/saveVideo', {
@@ -179,8 +177,9 @@
         if (isRecording) {
             mediaRecorder.stop();
             
+         	// 녹화 종료 시 테두리 색상 변경
             const liveVideoElement = document.getElementById('liveScreenVideo');
-            liveVideoElement.classList.remove('red-border'); // 녹화 종료 시 붉은 테두리 제거
+            liveVideoElement.classList.remove('red-border');
             
             isRecording = false;
             document.getElementById('startButton').disabled = false;
