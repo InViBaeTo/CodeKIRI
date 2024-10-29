@@ -47,11 +47,6 @@
 
     <script>
     
-    $(document).ready(function() {
-        console.log("User ID: ", userId);  // 디버그 메시지
-        fetchMp4Files();
-    });
-    
         // Java에서 가져온 userId를 JavaScript 변수에 할당
         const userId = "<%= userId %>";
 
@@ -62,7 +57,7 @@
 
         function fetchMp4Files() {
             $.ajax({
-                url: `http://192.168.219.115:5000/api/my-page?user_id=${userId}`,
+                url: 'http://192.168.219.115:5000/api/myPage?user_id='+userId,
                 method: 'GET',
                 success: function(response) {
                     if (response && Array.isArray(response)) {

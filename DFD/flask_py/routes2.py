@@ -9,8 +9,9 @@ app = Flask(__name__)
 CORS(app)
 
 def setup_routes2(app):
+    print("routes2 module has been loaded")  # 디버그 메시지
     
-    @app.route('/api/my-page', methods=['GET'])
+    @app.route('/api/myPage', methods=['GET'])
     def get_mp4_files():
         user_id = request.args.get('user_id')
         folder_path = f'C:/Users/smhrd15/Desktop/DFD_video/{user_id}'
