@@ -1,12 +1,14 @@
 from flask import Flask
 from flask_cors import CORS
 from routes import setup_routes
+from routes2 import setup_routes2
 
 app = Flask(__name__)
 
 CORS(app)
 
 setup_routes(app)  # routes.py에서 라우트 설정
+setup_routes2(app)  # routes.py에서 라우트 설정
 
 for rule in app.url_map.iter_rules():
     print(f"Registered route: {rule}")
