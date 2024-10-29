@@ -12,7 +12,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<<<<<<< HEAD
     <div class="container">
         <header>
             <div class="header-left">CODE KIRI</div>
