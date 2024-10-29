@@ -65,8 +65,14 @@ header {
     padding: 50px;
     border-radius: 15px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center; /* 중앙 정렬 */
+    align-items: center; /* 수직 정렬 */
+
+}
+
+.profile-info {
+    display: flex;
+    align-items: center; /* 수직 정렬 */
 }
 
 .profile-image img {
@@ -78,6 +84,7 @@ header {
 .profile-details {
     font-size: 18px;
     font-weight: bold;
+    margin-left: 20px;
 }
 
 .image-main {
@@ -115,6 +122,7 @@ header {
     top: 10px;
     right: 10px;
     cursor: pointer;
+<<<<<<< HEAD
 }
 
 /* 동영상 목록 스타일 */
@@ -162,3 +170,6 @@ header {
     font-size: 12px;
 }
 
+=======
+}
+>>>>>>> branch 'main' of https://github.com/InViBaeTo/CodeKIRI.git

@@ -12,6 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+<<<<<<< HEAD
     <div class="container">
         <header>
             <div class="header-left">CODE KIRI</div>
@@ -22,6 +23,37 @@
                 <a href="${pageContext.request.contextPath}/myPage">Mypage</a>
             </div>
         </header>
+=======
+	<div class="container">
+		<!-- 헤더 -->
+		<header>
+			<div class="header-left">CODE KIRI</div>
+			<div class="header-right">
+				<a href="${pageContext.request.contextPath}/fileTest">FileTest</a> <a
+					href="${pageContext.request.contextPath}/detection">Detection</a> <a
+					href="${pageContext.request.contextPath}/doLogout">Logout</a> <a
+					href="${pageContext.request.contextPath}/myPage">Mypage</a>
+			</div>
+		</header>
+		<%
+		DFD_USER user = (DFD_USER) session.getAttribute("user");
+		%>
+		<!-- 메인 콘텐츠 -->
+		<div class="profile-section">
+			<div class="profile-info">
+				<div class="profile-image">
+					<img src="${pageContext.request.contextPath}/img/아이콘.jpg"
+						alt="Profile">
+				</div>
+				<div class="profile-details">
+					<div class="email">
+						이메일 : <%=user.getUser_email()%></div>
+					<div class="signup-date">
+						가입일 : <%=user.getJoined_at()%></div>
+				</div>
+			</div>
+		</div>
+>>>>>>> branch 'main' of https://github.com/InViBaeTo/CodeKIRI.git
 
         <div class="profile-section">
             <div class="profile-info">
