@@ -5,9 +5,19 @@ import os
 from flask_cors import CORS
 import subprocess
 import requests  # HTTP 요청을 보내기 위해 추가
+import shutil
+
 
 app = Flask(__name__)
 CORS(app)  # CORS 활성화
+
+class VideoManager:
+    def __init__(self):
+        self.user_folder = None
+
+video_manager = VideoManager()
+
+
 
 def setup_routes(app):
     print("라우트를 설정 중입니다...")  # 디버그 메시지 추가
@@ -64,6 +74,7 @@ def setup_routes(app):
             print("비디오 저장 요청 수신")  # 디버깅 로그
             user_name = request.form.get('user_name', 'default_user')
             user_folder = request.form.get('user_folder')
+            video_manager.user_folder = user_folder
             video_folder = f'C:/Users/{user_name}/Desktop/DFD_video/{user_folder}'
             print(f"비디오 저장 폴더: {video_folder}")  # 디버깅 로그
             os.makedirs(video_folder, exist_ok=True)
@@ -87,6 +98,10 @@ def setup_routes(app):
     
             # ffmpeg를 이용해 webm 파일을 mp4로 변환
             mp4_file_path = video_path.replace('.webm', '.mp4')
+            
+            #ffmpeg 디버깅
+            #ffmpeg_path = shutil.which('ffmpeg')
+            #print(f"FFmpeg path: {ffmpeg_path}")
             
             print(mp4_file_path)
             try:
@@ -114,12 +129,18 @@ def setup_routes(app):
     @app.route('/run_notebook', methods=['GET'])
     def run_notebook():
         try:
+            print(f"유저 폴더:{video_manager.user_folder}")
+            
+            # 환경 변수 설정
+            os.environ['USER_FOLDER'] = video_manager.user_folder
+            
             # Jupyter Notebook을 실행합니다.
             notebook_path = "C:/Users/smhrd15/CViT-model/run.ipynb"
             output_path = "C:/Users/smhrd15/CViT-model/output_notebook.ipynb"
             subprocess.run(['jupyter', 'nbconvert', '--to', 'notebook', '--execute', notebook_path, '--output', output_path], check=True)
+            
             print("Jupyter Notebook 실행 완료")  # 디버깅 로그
-            return jsonify({"message": "Notebook executed successfully!"}), 200
+            return jsonify({"message": "노트북 실행 완료"}), 200
         except Exception as e:
             print(f"Jupyter Notebook 실행 오류: {str(e)}")  # 디버깅 로그
             return jsonify({"error": str(e)}), 500
@@ -150,7 +171,15 @@ def setup_routes(app):
         file.save(file_path)
         return f"파일이 {file_path}에 저장되었습니다"    
             
-    
+    @app.route('/receive_result', methods=['POST'])
+    def receive_result():
+        try:
+            result_data = request.json
+            # 결과 처리 로직 (예: 데이터베이스에 저장)
+            print("받은 결과:", result_data)
+            return jsonify({"status": "success"}), 200
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
             
             
             
