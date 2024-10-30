@@ -32,31 +32,19 @@ def setup_routes2(app):
             print(f"파일 검색 중 오류 발생: {e}")  # 디버그 메시지
             return jsonify({"error": "Internal Server Error"}), 500
     
-    @app.route('/video', methods=['POST'])
-    def get_video():
-        # formData에서 데이터를 가져옵니다.
-        user_id = request.form.get('user_id')
-        filename = request.form.get('filename')
-    
-        folder_path = f"C:/Users/smhrd15/Desktop/DFD_video/{user_id}"
-    
+    @app.route('/video/<user_id>/<filename>')
+    def get_video(user_id, filename):
+        folder_path = f'C:/Users/smhrd15/Desktop/DFD_video/{user_id}'
+        
         # 디버그 메시지
         print(f"요청받은 user_id: {user_id}, 파일명: {filename}")
         
         if not os.path.exists(os.path.join(folder_path, filename)):
             print("파일이 존재하지 않음")  # 디버그 메시지
             return jsonify({"error": "File not found"}), 404
-    
+        
         try:
-            # 파일 경로를 반환합니다.
-            file_url = url_for('get_video_file', user_id=user_id, filename=filename)
-            return jsonify({"file_url": file_url})
+            return send_from_directory(folder_path, filename)
         except Exception as e:
             print(f"파일 제공 중 오류 발생: {e}")  # 디버그 메시지
             return jsonify({"error": "Internal Server Error"}), 500
-
-    # 실제 파일을 제공하는 라우트
-    @app.route('/video_file/<user_id>/<filename>')
-    def get_video_file(user_id, filename):
-        folder_path = f"C:/Users/smhrd15/Desktop/DFD_video/{user_id}"
-        return send_from_directory(folder_path, filename)

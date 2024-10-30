@@ -62,6 +62,7 @@
                 success: function(response) {
                     if (response && Array.isArray(response)) {
                         renderVideoGallery(response);
+                        console.log(response);
                     } else if (response.error) {
                         alert("오류: " + response.error);
                     }
@@ -72,42 +73,25 @@
             });
         }
 
-        function renderVideoGallery(mp4Files, userId) {
+        function renderVideoGallery(mp4Files) {
             const videoGallery = $("#video-gallery");
             videoGallery.empty();
 
             if (mp4Files.length > 0) {
-                mp4Files.forEach(fileName => {
-                    const videoItem = `
-                        <div class="video-item">
-                            <video width="150" height="150" controls>
-                                <source src="#" data-filename="${fileName}" data-userid="${userId}" type="video/mp4">
-                            </video>
-                            <div class="video-title">${fileName}</div>
-                            <button class="delete-button" onclick="deleteVideo('${fileName}')">X</button>
-                        </div>
-                    `;
-                    videoGallery.append(videoItem);
-                });
-
-                // 비디오 소스 동적으로 설정
-                $("video source").each(function() {
-                    const fileName = $(this).data("filename");
-                    const userId = $(this).data("userid");
-                    console.log(fileName,userId)
-                    // Ajax를 사용해 동적으로 비디오 파일 가져오기
-                    $.ajax({
-                        type: "POST",
-                        url: "http://192.168.219.115:5000/video",
-                        data: { user_id: userId, filename: fileName },
-                        success: function(response) {
-                            $(this).attr("src", response.file_url);
-                        }.bind(this),
-                        error: function() {
-                            console.error("비디오 파일을 불러오는 데 실패했습니다.");
-                        }
-                    });
-                });
+            	
+            	mp4Files.forEach((value, index) => {
+            	    console.log(index, value);  // 0 '딸기', 1 '귤', 2 '사과' 순서로 출력
+            	    
+            	    var videoItem = "";
+            	    videoItem += '<div class="video-item">';
+            	    videoItem += '<video width="150" height="150" controls>';
+            	    videoItem += '<source src="http://192.168.219.115:5000/video/'+ userId +'/'+ value +'" type="video/mp4">';
+            	    videoItem +='</video>';
+            	    videoItem +='<div class="video-title">'+ value +'</div>';
+            	    videoItem +='</div>';
+            	videoGallery.append(videoItem);
+            	});
+            	
             } else {
                 videoGallery.html("<p>업로드된 MP4 파일이 없습니다.</p>");
             }
