@@ -1,4 +1,4 @@
-from flask import jsonify, Flask, request, redirect, url_for
+from flask import jsonify, Flask, request, redirect, url_for, send_from_directory
 from models import fetch_user_data  # fetch_user_data 함수 import
 import base64
 import os
