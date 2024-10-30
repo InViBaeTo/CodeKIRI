@@ -4,6 +4,7 @@ import base64
 import os
 from flask_cors import CORS
 import subprocess
+import requests  # HTTP 요청을 보내기 위해 추가
 
 app = Flask(__name__)
 CORS(app)  # CORS 활성화
@@ -78,46 +79,56 @@ def setup_routes(app):
     
             # 비디오 파일 저장
             video_path = os.path.join(video_folder, video_file.filename)
-            print(f"비디오 저장 경로: {video_path.replace('\\', '/')}")  # 디버깅 로그
+            video_path = video_path.replace('\\', '/')
+            print(f"비디오 저장 경로: {video_path}") # 디버깅 로그
+              
             video_file.save(video_path)
+            print("저장성공")
     
             # ffmpeg를 이용해 webm 파일을 mp4로 변환
             mp4_file_path = video_path.replace('.webm', '.mp4')
+            
+            print(mp4_file_path)
             try:
                 subprocess.run(['ffmpeg', '-i', video_path, mp4_file_path], check=True)
-                print(f"MP4로 변환 완료: {mp4_file_path.replace('\\', '/')}")  # 디버깅 로그
+                mp4_file_path = mp4_file_path.replace('\\', '/')
+                print(f"MP4로 변환 완료: {mp4_file_path}")# 디버깅 로그
             except subprocess.CalledProcessError as e:
                 print(f"비디오 변환 중 오류 발생: {str(e)}")  # 디버깅 로그
                 return jsonify({"error": f"비디오 변환 중 오류 발생: {str(e)}"}), 500
+    
+            # 비디오 저장 및 변환 후 노트북 실행
+            run_notebook()
     
             return jsonify({"message": "비디오가 성공적으로 저장되고 변환되었습니다!", "mp4_path": mp4_file_path.replace('\\', '/')}), 200
         except Exception as e:
             print(f"서버 오류 발생: {str(e)}")  # 디버깅 로그
             return jsonify({"error": f"서버 오류: {str(e)}"}), 500
             
-            
-            
-            # mp4 변환이 완료된 후 Jupyter Notebook 실행
-            try:
-                notebook_path = "C:/Users/smhrd15/CViT-model/run.ipynb"
-                result_file = os.path.join(video_folder, 'result.json')  # 결과를 저장할 파일 경로
-                subprocess.run(['jupyter', 'nbconvert', '--to', 'notebook', '--execute', '--output', result_file, notebook_path], check=True)
-                print("Jupyter Notebook 실행 완료")  # 디버깅 로그
-                
-                # 결과 파일 읽기
-                with open(result_file, 'r', encoding='utf-8') as f:
-                    result_data = json.load(f)
-                    
-                return jsonify({"message": "비디오가 성공적으로 저장, 변환, 처리되었습니다!", "result": result_data}), 200
-            except subprocess.CalledProcessError as e:
-                print(f"Jupyter Notebook 실행 오류: {str(e)}")  # 디버깅 로그
-                return jsonify({"error": f"Jupyter Notebook 실행 중 오류 발생: {str(e)}"}), 500
     
         except Exception as e:
             print(f"서버 오류 발생: {str(e)}")  # 디버깅 로그
             return jsonify({"error": f"서버 오류: {str(e)}"}), 500
 
-
+    
+    @app.route('/run_notebook', methods=['GET'])
+    def run_notebook():
+        try:
+            # Jupyter Notebook을 실행합니다.
+            notebook_path = "C:/Users/smhrd15/CViT-model/run.ipynb"
+            output_path = "C:/Users/smhrd15/CViT-model/output_notebook.ipynb"
+            subprocess.run(['jupyter', 'nbconvert', '--to', 'notebook', '--execute', notebook_path, '--output', output_path], check=True)
+            print("Jupyter Notebook 실행 완료")  # 디버깅 로그
+            return jsonify({"message": "Notebook executed successfully!"}), 200
+        except Exception as e:
+            print(f"Jupyter Notebook 실행 오류: {str(e)}")  # 디버깅 로그
+            return jsonify({"error": str(e)}), 500
+    
+    if __name__ == '__main__':
+        app.run(debug=True)
+    
+    
+    
        
     @app.route('/upload', methods=['POST'])
     def upload_file():
@@ -139,8 +150,7 @@ def setup_routes(app):
         file.save(file_path)
         return f"파일이 {file_path}에 저장되었습니다"    
             
-            
-            
+    
             
             
             
