@@ -21,9 +21,8 @@ def setup_routes2(app):
         print(f"폴더 경로: {folder_path}")
         
         if not os.path.exists(folder_path):
-            print("폴더가 존재하지 않음")  # 디버그 메시지
-            return jsonify({"error": "Folder not found"}), 404
-    
+            os.makedirs(folder_path)
+        
         try:
             mp4_files = [f for f in os.listdir(folder_path) if f.endswith('.mp4')]
             print(f"찾은 MP4 파일들: {mp4_files}")  # 디버그 메시지

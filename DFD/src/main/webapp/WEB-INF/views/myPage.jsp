@@ -40,7 +40,7 @@
         </div>
 
         <div class="video-main">
-            <h2>MP4 파일 목록</h2>
+            <h2>녹화된 파일 목록</h2>
             <div id="video-gallery" class="video-gallery"></div>
         </div>
     </div>
@@ -97,10 +97,6 @@
             }
         }
 
-        function deleteVideo(fileName) {
-            // 파일 삭제 로직 추가 시 구현 예정
-            alert(fileName + " 삭제 버튼 클릭됨");
-        }
     </script>
 </body>
 </html>
