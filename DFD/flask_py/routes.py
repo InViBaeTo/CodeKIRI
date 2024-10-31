@@ -6,6 +6,7 @@ from flask_cors import CORS
 import subprocess
 import requests  # HTTP 요청을 보내기 위해 추가
 import shutil
+import glob
 
 
 app = Flask(__name__)
@@ -99,7 +100,10 @@ def setup_routes(app):
               
             video_file.save(video_path)
             print("webm 저장 성공")
-    
+            
+            delete_all_files_in_folder(video_folder_mp4b)
+            
+            
             # ffmpeg를 이용해 webm 파일을 mp4로 변환
             mp4_file_path = video_path.replace('/webm', '/mp4/before')
             print("mp4 파일 변환 1", mp4_file_path)
@@ -195,6 +199,7 @@ def setup_routes(app):
             # 받은 결과 데이터 처리
             print("받은 결과:", result_data)
             prediction_result = result_data.get('prediction')  # pred[0]값 저장
+            video_manager.prediction_result = ""
             video_manager.prediction_result = prediction_result # 결과값 클래스에 저장
             
             # MP4 파일 이동
@@ -215,7 +220,6 @@ def setup_routes(app):
             
     @app.route('/get_prediction', methods=['GET'])
     def get_prediction():
-        prediction_result = ""
         prediction_result = video_manager.prediction_result
         
         if prediction_result is not None:
@@ -223,7 +227,14 @@ def setup_routes(app):
         else:
             return jsonify({"error": "예측 결과가 아직 없습니다."}), 404        
             
-        
+    def delete_all_files_in_folder(folder_path):
+        files = glob.glob(os.path.join(folder_path, '*'))
+        for file in files:
+            try:
+                os.remove(file)
+                print(f"삭제된 파일: {file}")
+            except Exception as e:
+                print(f"파일 삭제 중 오류 발생: {e}")    
         
         
         

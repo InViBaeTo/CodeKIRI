@@ -173,7 +173,7 @@
                 mediaRecorder.stop(); // 현재 녹화 중지
                 setTimeout(() => startRecording(), 100); // 0.1초 후에 새로운 녹화 시작
             }
-        }, 50000); // 10초 후에 녹화 중지
+        }, 20000); // 20초 후에 녹화 중지
     }
 
     document.getElementById('startButton').addEventListener('click', startRecording);

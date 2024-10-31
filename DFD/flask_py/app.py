@@ -16,3 +16,6 @@ for rule in app.url_map.iter_rules():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)  # 로컬 서버 실행
+    
+if __name__ == '__main__':
+    app.run(threaded=True)
