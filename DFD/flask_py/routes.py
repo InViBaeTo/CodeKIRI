@@ -14,9 +14,13 @@ CORS(app)  # CORS 활성화
 class VideoManager:
     def __init__(self):
         self.user_folder = None
-
+        self.user_name = None
+        self.mp4_file_path = None
+        self.video_folder_mp4a = None
+        self.prediction_result = None
 video_manager = VideoManager()
 
+prediction_result= None
 
 
 def setup_routes(app):
@@ -36,10 +40,6 @@ def setup_routes(app):
         else:
             return jsonify({"error": "사용자 데이터를 가져오는 데 실패했습니다."}), 500
 
-    @app.route('/test', methods=['GET'])
-    def test_route():
-        print("테스트 라우트에 접근했습니다.")  # 디버그 메시지 추가
-        return "Test route is working!"
 
     @app.route('/saveScreenshot', methods=['POST'])
     def save_screenshot():
@@ -74,8 +74,12 @@ def setup_routes(app):
             print("비디오 저장 요청 수신")  # 디버깅 로그
             user_name = request.form.get('user_name', 'default_user')
             user_folder = request.form.get('user_folder')
+            video_manager.user_name = user_name
             video_manager.user_folder = user_folder
-            video_folder = f'C:/Users/{user_name}/Desktop/DFD_video/{user_folder}'
+            video_folder = f'C:/Users/{user_name}/Desktop/DFD_video/{user_folder}/webm'
+            video_folder_mp4b = f'C:/Users/{user_name}/Desktop/DFD_video/{user_folder}/mp4/before'
+            
+            
             print(f"비디오 저장 폴더: {video_folder}")  # 디버깅 로그
             os.makedirs(video_folder, exist_ok=True)
     
@@ -94,24 +98,34 @@ def setup_routes(app):
             print(f"비디오 저장 경로: {video_path}") # 디버깅 로그
               
             video_file.save(video_path)
-            print("저장성공")
+            print("webm 저장 성공")
     
             # ffmpeg를 이용해 webm 파일을 mp4로 변환
-            mp4_file_path = video_path.replace('.webm', '.mp4')
-            
+            mp4_file_path = video_path.replace('/webm', '/mp4/before')
+            print("mp4 파일 변환 1", mp4_file_path)
+            mp4_file_path = mp4_file_path.replace('.webm', '.mp4')
             #ffmpeg 디버깅
             #ffmpeg_path = shutil.which('ffmpeg')
             #print(f"FFmpeg path: {ffmpeg_path}")
             
-            print(mp4_file_path)
+            print("mp4 파일 변환 2", mp4_file_path)
+            
+            video_manager.mp4_file_path = mp4_file_path
+            
+            print(video_folder_mp4b)
+            os.makedirs(video_folder_mp4b, exist_ok=True)
             try:
                 subprocess.run(['ffmpeg', '-i', video_path, mp4_file_path], check=True)
-                mp4_file_path = mp4_file_path.replace('\\', '/')
                 print(f"MP4로 변환 완료: {mp4_file_path}")# 디버깅 로그
             except subprocess.CalledProcessError as e:
                 print(f"비디오 변환 중 오류 발생: {str(e)}")  # 디버깅 로그
                 return jsonify({"error": f"비디오 변환 중 오류 발생: {str(e)}"}), 500
-    
+            
+            #mp4/after 폴더 생성
+            video_folder_mp4a = f'C:/Users/{user_name}/Desktop/DFD_video/{user_folder}/mp4/after'
+            os.makedirs(video_folder_mp4a, exist_ok=True)
+            video_manager.video_folder_mp4a = video_folder_mp4a
+            
             # 비디오 저장 및 변환 후 노트북 실행
             run_notebook()
     
@@ -129,15 +143,18 @@ def setup_routes(app):
     @app.route('/run_notebook', methods=['GET'])
     def run_notebook():
         try:
-            print(f"유저 폴더:{video_manager.user_folder}")
+            print(f"유저 컴퓨터:{video_manager.user_name}")
+            print(f"유저 아이디:{video_manager.user_folder}")
             
             # 환경 변수 설정
+            os.environ['USER_NAME'] = video_manager.user_name
             os.environ['USER_FOLDER'] = video_manager.user_folder
             
             # Jupyter Notebook을 실행합니다.
             notebook_path = "C:/Users/smhrd15/CViT-model/run.ipynb"
             output_path = "C:/Users/smhrd15/CViT-model/output_notebook.ipynb"
             subprocess.run(['jupyter', 'nbconvert', '--to', 'notebook', '--execute', notebook_path, '--output', output_path], check=True)
+            
             
             print("Jupyter Notebook 실행 완료")  # 디버깅 로그
             return jsonify({"message": "노트북 실행 완료"}), 200
@@ -175,11 +192,43 @@ def setup_routes(app):
     def receive_result():
         try:
             result_data = request.json
-            # 결과 처리 로직 (예: 데이터베이스에 저장)
+            # 받은 결과 데이터 처리
             print("받은 결과:", result_data)
-            return jsonify({"status": "success"}), 200
+            prediction_result = result_data.get('prediction')  # pred[0]값 저장
+            video_manager.prediction_result = prediction_result # 결과값 클래스에 저장
+            
+            # MP4 파일 이동
+            
+            file_name = os.path.basename(video_manager.mp4_file_path)
+            print(file_name)
+            source_path = video_manager.mp4_file_path  # 원본 파일 위치
+            destination_folder = video_manager.video_folder_mp4a  # 이동할 폴더
+            destination_path = os.path.join(destination_folder, file_name)
+    
+            # 파일 이동
+            shutil.move(source_path, destination_path)
+            print("MP4 파일이 성공적으로 이동되었습니다.")
+    
+            return jsonify({"message": "결과가 성공적으로 수신되었습니다"}), 200
         except Exception as e:
             return jsonify({"error": str(e)}), 500
             
+    @app.route('/get_prediction', methods=['GET'])
+    def get_prediction():
+        prediction_result = ""
+        prediction_result = video_manager.prediction_result
+        
+        if prediction_result is not None:
+            return jsonify({"prediction": prediction_result}), 200
+        else:
+            return jsonify({"error": "예측 결과가 아직 없습니다."}), 404        
             
-            
+        
+        
+        
+        
+        
+        
+        
+        
+        

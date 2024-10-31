@@ -34,6 +34,9 @@
 
 		<!-- 메인 콘텐츠 영역 -->
 		<div class="main-content">
+		<h1>예측 결과</h1>
+    		<p id="predictionResult">예측 결과 기다리는중...</p>
+		
 			<h1>실시간 화면 캡처</h1>
 
 			<video id="liveScreenVideo" autoplay playsinline
@@ -59,6 +62,9 @@
 			<%
 			}
 			%>
+			
+			
+			
 		</div>
 	</div>
 	
@@ -167,7 +173,7 @@
                 mediaRecorder.stop(); // 현재 녹화 중지
                 setTimeout(() => startRecording(), 100); // 0.1초 후에 새로운 녹화 시작
             }
-        }, 10000); // 10초 후에 녹화 중지
+        }, 50000); // 10초 후에 녹화 중지
     }
 
     document.getElementById('startButton').addEventListener('click', startRecording);
@@ -185,7 +191,24 @@
             document.getElementById('stopButton').disabled = true;
         }
     });
+    async function fetchPrediction() {
+        try {
+        	
+            const response = await fetch('http://192.168.219.115:5000/get_prediction');
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data);
+                document.getElementById('predictionResult').innerText = "예측 결과: " + data.prediction;
+            } else {
+                document.getElementById('predictionResult').innerText = "예측 결과 기다리는중...";
+            }
+        } catch (error) {
+            console.error("Error fetching prediction:", error);
+        }
+    }
 
+    // 일정 시간마다 fetchPrediction 함수를 호출
+    setInterval(fetchPrediction, 10000); // 10초마다 예측 결과 조회
     
 </script>
 
