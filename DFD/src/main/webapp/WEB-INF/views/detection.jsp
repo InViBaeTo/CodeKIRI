@@ -196,6 +196,24 @@
     // 일정 시간마다 fetchPrediction 함수를 호출
     setInterval(fetchPrediction, 10000); // 10초마다 예측 결과 조회
     
+    
+    // 페이지 접속시 예측값 초기화
+    window.addEventListener('load', function() {
+        fetch('http://localhost:5000/reset_prediction_result', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                console.log(data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+    
 </script>
 
 

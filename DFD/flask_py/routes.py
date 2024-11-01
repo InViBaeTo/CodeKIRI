@@ -236,7 +236,10 @@ def setup_routes(app):
             except Exception as e:
                 print(f"파일 삭제 중 오류 발생: {e}")    
         
-        
+    @app.route('/reset_prediction_result', methods=['POST'])
+    def reset_prediction_result():
+        video_manager.prediction_result = None  # 초기화
+        return jsonify({'status': 'success', 'message': '예측 결과 초기화 완료'})    
         
         
         
