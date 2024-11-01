@@ -14,7 +14,7 @@ def setup_routes2(app):
     @app.route('/api/myPage', methods=['GET'])
     def get_mp4_files():
         user_id = request.args.get('user_id')
-        folder_path = f'C:/Users/smhrd15/Desktop/DFD_video/{user_id}'
+        folder_path = f'C:/Users/smhrd15/Desktop/DFD_video/{user_id}/mp4/after'
         
         # 디버그 메시지
         print(f"요청받은 user_id: {user_id}")
@@ -33,7 +33,7 @@ def setup_routes2(app):
     
     @app.route('/video/<user_id>/<filename>')
     def get_video(user_id, filename):
-        folder_path = f'C:/Users/smhrd15/Desktop/DFD_video/{user_id}'
+        folder_path = f'C:/Users/smhrd15/Desktop/DFD_video/{user_id}/mp4/after'
         
         # 디버그 메시지
         print(f"요청받은 user_id: {user_id}, 파일명: {filename}")
