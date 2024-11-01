@@ -34,8 +34,7 @@
 
 		<!-- 메인 콘텐츠 영역 -->
 		<div class="main-content">
-		<h1>예측 결과</h1>
-    		<p id="predictionResult">예측 결과 기다리는중...</p>
+    		
 		
 			<h1>실시간 화면 캡처</h1>
 
@@ -44,24 +43,11 @@
 			</video>
 			<button id="startButton">녹화 시작</button>
 			<button id="stopButton" disabled>녹화 중지</button>
-			<%
-			// accuracy는 딥페이크 확률값을 불러오고 넣어둘 변수
-			// 따로 확률을 보여주는 것 또한 생각중입니다
-			int accuracy = 0;
-			if (accuracy >= 80) {
-			%>
-			<div class="result-bar">딥페이크의 확률이 높습니다</div>
-			<%
-			} else if (accuracy < 80) {
-			%>
-			<div class="result-bar">딥페이크의 확률이 낮습니다</div>
-			<%
-			} else {
-			%>
-			<div class="result-bar">파일을 넣어주세요</div>
-			<%
-			}
-			%>
+
+			<div class="result-bar">
+				<p id="predictionResult">예측 결과 기다리는중...</p>
+			</div>
+
 			
 			
 			
