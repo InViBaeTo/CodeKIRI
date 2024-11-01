@@ -199,7 +199,7 @@
     
     // 페이지 접속시 예측값 초기화
     window.addEventListener('load', function() {
-        fetch('http://localhost:5000/reset_prediction_result', {
+        fetch('http:/192.168.219.115:5000/reset_prediction_result', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
