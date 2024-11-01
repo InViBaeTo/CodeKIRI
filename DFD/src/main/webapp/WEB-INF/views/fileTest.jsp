@@ -1,3 +1,4 @@
+<%@page import="java.util.Random"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,76 +7,84 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>File Test Page</title>
-<!-- Google Fonts 추가 -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Koulen&family=Goldman&family=Notable&family=Oleo+Script&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/fileTest.css" />
-
 </head>
 <body>
 	<div class="container">
-		<!-- 헤더 -->
 		<header>
 			<div class="header-left">CODE KIRI</div>
 			<div class="header-right">
-				<a href="${pageContext.request.contextPath}/fileTest">FileTest</a> <a
-					href="${pageContext.request.contextPath}/detection">Detection</a> <a
-					href="${pageContext.request.contextPath}/doLogout">Logout</a> <a
-					href="${pageContext.request.contextPath}/myPage">Mypage</a>
+				<a href="${pageContext.request.contextPath}/fileTest">FileTest</a> 
+				<a href="${pageContext.request.contextPath}/detection">Detection</a> 
+				<a href="${pageContext.request.contextPath}/doLogout">Logout</a> 
+				<a href="${pageContext.request.contextPath}/myPage">Mypage</a>
 			</div>
 		</header>
 
-		<!-- 메인 콘텐츠 -->
 		<div class="main-content">
 			<h1>파일 업로드</h1>
 			<div class="preview-screen">
 				<img id="imagePreview" src="" alt="미리보기 이미지"
 					style="display: none; max-width: 100%; max-height: 100%;" />
 			</div>
+
 			<div class="display-bar">
-				<form action="http://192.168.219.115:5000/upload" method="post"
-					enctype="multipart/form-data">
-					<input type="file" name="file" onchange="previewImage(event)" /> 
-					<input type="submit" value="Upload" />
+				<form id="uploadForm" onsubmit="return handleUpload(event);">
+					<input type="file" name="file" id="fileInput" onchange="previewImage(event)" />
+					<input type="submit" value="Upload" id="uploadButton" disabled />
 				</form>
 			</div>
-			<%
-			// accuracy는 딥페이크 확률값을 불러오고 넣어둘 변수
-			// 따로 확률을 보여주는 것 또한 생각중입니다
-			int accuracy = 0;
-			if (accuracy >= 80) {
-			%>
-			<div class="result-bar">딥페이크의 확률이 높습니다</div>
-			<%
-			} else if (accuracy < 80) {
-			%>
-			<div class="result-bar">딥페이크의 확률이 낮습니다</div>
-			<%
-			} else {
-			%>
-			<div class="result-bar">파일을 넣어주세요</div>
-			<%
-			}
-			%>
+			<div id="waitingMessage" class="waiting-message" style="display: none;">기다려 주세요...</div>
+			<div id="resultBar" class="result-bar">파일을 넣어주세요</div>
 		</div>
 	</div>
 
 	<script>
+		let accuracyNum = 0; // 처음에는 랜덤 값을 0으로 고정
+		let fileSelected = false;
+
 		function previewImage(event) {
-			const file = event.target.files[0]; // 사용자가 선택한 필드 0번째 파일 가져오기
-			const reader = new FileReader(); // 비동기 파일 읽기
+			const file = event.target.files[0];
+			const reader = new FileReader();
 
 			reader.onload = function(e) {
 				const img = document.getElementById('imagePreview');
-				img.src = e.target.result; // 업로드한 파일의 URL을 미리보기 이미지로 설정
-				img.style.display = 'block'; // 이미지 표시
+				img.src = e.target.result;
+				img.style.display = 'block';
 			};
 
 			if (file) {
-				reader.readAsDataURL(file); // 파일을 읽어 Data URL 형식으로 변환
+				fileSelected = true; // 파일이 선택되었음을 표시
+				document.getElementById('uploadButton').disabled = false; // 업로드 버튼 활성화
+				reader.readAsDataURL(file);
 			}
+		}
+
+		function handleUpload(event) {
+			event.preventDefault(); // 기본 폼 제출 방지
+			document.getElementById('uploadButton').disabled = true; // 다시 업로드 버튼 비활성화
+			document.getElementById('waitingMessage').style.display = 'block'; // 기다려 주세요 메시지 표시
+
+			setTimeout(() => {
+				// 3초 후 결과를 표시
+				accuracyNum = Math.floor(Math.random() * 30); // 0~29 사이의 랜덤 값 생성
+				const resultBar = document.getElementById('resultBar');
+
+				if (accuracyNum == 0) {
+					resultBar.innerHTML = "파일을 넣어주세요";
+				} else if (accuracyNum < 10) {
+					resultBar.innerHTML = "딥페이크의 확률이 낮습니다";
+				} else {
+					resultBar.innerHTML = "딥페이크의 확률이 높습니다";
+				}
+
+				fileSelected = false; // 파일 선택 상태 초기화
+				document.getElementById('waitingMessage').style.display = 'none'; // 기다려 주세요 메시지 숨김
+			}, 3000);
 		}
 	</script>
 </body>
