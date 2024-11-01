@@ -33,7 +33,7 @@
 		</header>
 
 		<!-- 메인 콘텐츠 영역 -->
-		<div class="main-content">
+		<div class="main-content"  style = "overflow-y: auto;">
     		
 		
 			<h1>실시간 화면 캡처</h1>

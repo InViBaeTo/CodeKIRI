@@ -88,7 +88,9 @@
             	    videoItem += '<source src="http://192.168.219.115:5000/video/'+ userId +'/'+ value +'" type="video/mp4">';
             	    videoItem +='</video>';
             	    videoItem +='<div class="video-title">'+ value +'</div>';
+            	    videoItem +='<button class="delete-button" onclick="sendVideoRequest('+value+')">X</button>';
             	    videoItem +='</div>';
+            	    
             	videoGallery.append(videoItem);
             	});
             	
