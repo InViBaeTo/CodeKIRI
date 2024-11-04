@@ -1,43 +1,42 @@
 @charset "UTF-8";
 
-
 * {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body, html {
-   height: 100%;
-   width: 100%;
-   overflow: hidden;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 /* 공통 헤더 스타일 */
 header {
-   width: 100%;
-   max-width: 1440px; /* 최대 너비 고정 */
-   height: 80px;
-   padding: 20px;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   position: fixed;
-   top: 0;
-   left: 50%;
-   transform: translateX(-50%);
-   color: black;
-   font-weight: bold;
-   z-index: 2;
-   background: rgba(255, 255, 255, 0.9);
+	width: 100%;
+	max-width: 1440px; /* 최대 너비 고정 */
+	height: 80px;
+	padding: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	color: black;
+	font-weight: bold;
+	z-index: 2;
+	background: rgba(255, 255, 255, 0.9);
 }
 
 /* 팀명 스타일 */
 .header-left {
-   font-size: 24px;
-   font-family: 'Notable', sans-serif;
+	font-size: 24px;
+	font-family: 'Notable', sans-serif;
 }
 
 .header-left a {
@@ -46,45 +45,99 @@ header {
 }
 
 .header-right a {
-   font-size: 18px;
-   text-decoration: none;
-   color: black;
-   margin-left: 15px; /* 링크 간의 간격 추가 */
-   font-weight: bold;
-   transition: color 0.3s;
-   border: none; /* 사각형 박스를 없애기 위해 테두리 제거 */
-   background: none; /* 배경색 제거 */
+	font-size: 18px;
+	text-decoration: none;
+	color: black;
+	margin-left: 15px; /* 링크 간의 간격 추가 */
+	font-weight: bold;
+	transition: color 0.3s;
+	border: none; /* 사각형 박스를 없애기 위해 테두리 제거 */
+	background: none; /* 배경색 제거 */
 }
 
 .header-right a:hover {
-   color: gray; /* 호버 시 색상 변경 */
+	color: gray; /* 호버 시 색상 변경 */
 }
 
 /* 메인 콘텐츠 */
 .main-content {
-    width: 1200px;
-    margin-top: 120px;
-    height : 800px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #f2f2f2;
-    padding: 50px;
+	width: 1400px;
+	margin-top: 120px;
+	height: 800px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #f2f2f2;
+	padding: 70px;
 }
 
 /* 결과 표시 바 */
 .result-bar {
-    width: 800px;
-    background-color: white;
-    padding: 20px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    color: black;
-    border-radius: 10px;
+	width: 800px;
+	background-color: white;
+	padding: 20px;
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	color: black;
+	border-radius: 10px;
 }
 
+/* 비디오 검은창 */
+.video-container {
+	width: 80%;
+	margin-top: 20px;
+	border: 3px solid black;
+	background-color: black;
+	display: inline-block;
+	text-align: center;
+}
+
+.video {
+    width: 100%;          /* 비디오 폭을 100%로 설정 */
+    height: 100%;        /* 비디오의 높이를 자동으로 설정 */
+}
 .red-border {
-        border-color: red !important; /* 붉은색 테두리 */
+	border-color: red !important; /* 붉은색 테두리 */
+}
+
+/* 버튼 기본 스타일 */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* 버튼 컨테이너 */
+.button-container {
+        display: flex;                /* Flexbox를 사용하여 버튼을 정렬 */
+        justify-content: space-between; /* 양쪽 끝으로 버튼을 배치 */
+        margin: 10px;            /* 버튼 간격 */
+        width: 100%;                  /* 부모 요소의 너비를 100%로 설정 */
+        max-width: 500px;            /* 최대 너비 설정*/
     }
+/* 녹화 시작 버튼 스타일 */
+#startButton {
+    background-color: #007bff; /* 파란색 */
+    color: white; /* 글자 색상 */
+}
+
+#startButton:hover {
+    background-color: #0056b3; /* 호버 시 더 어두운 파란색 */
+}
+
+/* 녹화 중지 버튼 스타일 */
+#stopButton {
+    background-color: #dc3545; /* 붉은색 */
+    color: white; /* 글자 색상 */
+    margin-left: 10px; /* 버튼 간의 간격 */
+}
+
+#stopButton:hover {
+    background-color: #c82333; /* 호버 시 더 어두운 붉은색 */
+}

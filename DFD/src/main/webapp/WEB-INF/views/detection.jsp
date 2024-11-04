@@ -23,7 +23,9 @@
 	<div class="container">
 		<!-- 헤더 -->
 		<header>
-			<div class="header-left"><a href="${pageContext.request.contextPath}/">CODE KIRI</a></div>
+			<div class="header-left">
+				<a href="${pageContext.request.contextPath}/">CODE KIRI</a>
+			</div>
 			<div class="header-right">
 				<a href="${pageContext.request.contextPath}/fileTest">FileTest</a> <a
 					href="${pageContext.request.contextPath}/detection">Detection</a> <a
@@ -33,35 +35,36 @@
 		</header>
 
 		<!-- 메인 콘텐츠 영역 -->
-		<div class="main-content"  style = "overflow-y: auto;">
-    		
-		
+		<div class="main-content"
+			style="overflow-y: auto; background-image: url('${pageContext.request.contextPath}/img/paper.jpg'); background-size: cover; background-position: center;">
 			<h1>실시간 화면 캡처</h1>
-
-			<video id="liveScreenVideo" autoplay playsinline
-				style="width: 80%; margin-top: 20px; border: 3px solid black;">
-			</video>
-			<button id="startButton">녹화 시작</button>
-			<button id="stopButton" disabled>녹화 중지</button>
-
+			<div class="video-container">
+				<video id="liveScreenVideo" class="video" autoplay playsinline>
+				</video>
+			</div>
+			<div class="button-container">
+				<button id="startButton">녹화 시작</button>
+				<button id="stopButton" disabled>녹화 중지</button>
+			</div>
 			<div class="result-bar">
 				<p id="predictionResult">예측 결과 기다리는중...</p>
 			</div>
 
-			
-			
-			
 		</div>
 	</div>
-	
-	<%DFD_USER user = (DFD_USER)session.getAttribute("user"); %>
-	<%String user_id = user.getUser_id(); %>
-	
-        
+
+	<%
+	DFD_USER user = (DFD_USER) session.getAttribute("user");
+	%>
+	<%
+	String user_id = user.getUser_id();
+	%>
+
+
 	<script>
 	
 
-	var name = "<%= user_id %>";
+	var name = "<%=user_id%>";
 	console.log("유저 아이디:", name);
 
 	
@@ -165,17 +168,25 @@
     document.getElementById('startButton').addEventListener('click', startRecording);
 
     document.getElementById('stopButton').addEventListener('click', () => {
-        if (isRecording) {
-            mediaRecorder.stop();
-            
-         	// 녹화 종료 시 테두리 색상 변경
-            const liveVideoElement = document.getElementById('liveScreenVideo');
-            liveVideoElement.classList.remove('red-border');
-            
-            isRecording = false;
-            document.getElementById('startButton').disabled = false;
-            document.getElementById('stopButton').disabled = true;
-        }
+    	document.getElementById('stopButton').addEventListener('click', () => {
+    	    if (isRecording) {
+    	        mediaRecorder.stop();
+
+    	        // 녹화 종료 시 테두리 색상 변경
+    	        const liveVideoElement = document.getElementById('liveScreenVideo');
+    	        liveVideoElement.classList.remove('red-border');
+
+    	        // 화면 공유 스트림 중지
+    	        if (stream) {
+    	            stream.getTracks().forEach(track => track.stop());
+    	        }
+
+    	        isRecording = false;
+    	        document.getElementById('startButton').disabled = false;
+    	        document.getElementById('stopButton').disabled = true;
+    	    }
+    	});
+
     });
     async function fetchPrediction() {
         try {
