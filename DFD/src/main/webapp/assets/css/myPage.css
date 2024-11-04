@@ -61,8 +61,8 @@ header {
 
 /* 메인 콘텐츠 */
 .profile-section {
-	width: calc(100vh - 300px);
-	max-width: 800px;
+	width: calc(100vh - 100px);
+	max-width: 1200px;
 	margin-top: 120px;
 	background-color: #f2f2f2;
 	padding: 50px;
@@ -128,8 +128,8 @@ header {
 
 /* 동영상 목록 스타일 */
 .video-main {
-	width: calc(100vh - 300px);
-	max-width: 800px;
+	width: calc(100vh - 100px);
+	max-width: 1200px;
 	margin-top: 30px;
 	padding: 20px;
 	background-color: #f9f9f9;
@@ -149,7 +149,9 @@ header {
 	overflow-y: auto; /* video-gallery에 세로 스크롤 추가 */
 	overflow-x: hidden;
 	max-height: 400px; /* 스크롤이 필요한 경우 높이 제한 */
-	padding-right: 10px; /* 스크롤바가 있을 때 내용과 겹치지 않도록 여유 공간 추가 */
+	padding-right: 5px; /* 스크롤바가 있을 때 내용과 겹치지 않도록 여유 공간 추가 */
+	align-content: center;
+	padding-left: 50px;
 }
 
 /* 동영상 아이템 스타일 */
@@ -165,6 +167,7 @@ header {
 	font-size: 14px;
 	margin-top: 5px;
 	text-align: center;
+	margin-right: 10px;
 }
 
 .delete-button {
