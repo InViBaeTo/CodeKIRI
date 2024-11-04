@@ -66,37 +66,10 @@
 
 		<!-- 세 번째 섹션 -->
 		<section class="section third-section">
-			<div class="main-content">
-				<!-- 이미지 갤러리 -->
-				<div class="image-gallery">
-					<img src="${pageContext.request.contextPath}/img/face6.jpg"
-						alt="Face 1"> <img
-						src="${pageContext.request.contextPath}/img/face4.jpg"
-						alt="Face 2"> <img
-						src="${pageContext.request.contextPath}/img/face5.png"
-						alt="Face 3"> <img
-						src="${pageContext.request.contextPath}/img/face3.jpg"
-						alt="Face 4">
-				</div>
-				<!-- 설명 박스 -->
-				<div class="description-box">
-					<h1>DETECTOR</h1>
-					<p class="text1">
-						CODE KIRI는 AI 시대에 맞춰<br>딥페이크 탐지 서비스를 개발하는 팀입니다.
-					</p>
-					<p class="text2">
-						AI가 발전하여 화면너머의 사람마저<br>감출 수 있는 상황에 맞추어<br>딥페이크를 검출하고
-						이용자에게 진실을 알려주기 위해<br>이 프로그램이 개발 되었습니다.
-					</p>
-				</div>
-			</div>
-			<div class="scroll-indicator">scroll</div>
-		</section>
-
-		<!-- 네 번째 섹션 -->
-		<section class="section fourth-section">
 			<header>
-				<div class="header-left"><a href="${pageContext.request.contextPath}/">CODE KIRI</a></div>
+				<div class="header-left">
+					<a href="${pageContext.request.contextPath}/">CODE KIRI</a>
+				</div>
 				<div class="header-right">
 					<%
 					DFD_USER user = (DFD_USER) session.getAttribute("user");
@@ -121,27 +94,32 @@
 				</div>
 			</header>
 			<div class="main-content">
-				<!-- 왼쪽 설명 박스 -->
-				<div class="analysis">
-					<img src="${pageContext.request.contextPath}/img/혈관 얼굴.jpg"
-						alt="혈류 분석" class="circle-image">
-					<h2>혈류 분석</h2>
-					<p>
-						딥페이크 분석을 넘어 더한 정교하게 만들어진 분석<br>혈관에 있어 높은 정확성을 가진다.
-					</p>
+				<!-- 이미지 갤러리 -->
+				<div class="image-gallery">
+					<img src="${pageContext.request.contextPath}/img/face6.jpg"
+						alt="Face 1"> <img
+						src="${pageContext.request.contextPath}/img/face4.jpg"
+						alt="Face 2"> <img
+						src="${pageContext.request.contextPath}/img/face5.png"
+						alt="Face 3"> <img
+						src="${pageContext.request.contextPath}/img/face3.jpg"
+						alt="Face 4">
 				</div>
-				<!-- 오른쪽 설명 박스 -->
-				<div class="analysis">
-					<img src="${pageContext.request.contextPath}/img/안면인식.jpg"
-						alt="안면 분석" class="circle-image">
-					<h2>안면 분석</h2>
-					<p>
-						안면 분석을 통한 인물의 미묘한 움직임을 감지<br>부자연스러운 점을 찾아 딥페이크를 감지한다.
+				<!-- 설명 박스 -->
+				<div class="description-box">
+					<h1>DETECTOR</h1>
+					<p class="text1">
+						CODE KIRI는 AI 시대에 맞춰<br>딥페이크 탐지 서비스를 개발하는 팀입니다.
+					</p>
+					<p class="text2">
+						AI가 발전하여 화면너머의 사람마저<br>감출 수 있는 상황에 맞추어<br>딥페이크를 검출하고
+						이용자에게 진실을 알려주기 위해<br>이 프로그램이 개발 되었습니다.
 					</p>
 				</div>
 			</div>
 			<div class="scroll-indicator">END</div>
 		</section>
+
 	</div>
 
 	<script>
