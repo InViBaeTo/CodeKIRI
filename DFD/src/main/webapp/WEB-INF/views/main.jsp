@@ -96,7 +96,7 @@
 		<!-- 네 번째 섹션 -->
 		<section class="section fourth-section">
 			<header>
-				<div class="header-left">CODE KIRI</div>
+				<div class="header-left"><a href="${pageContext.request.contextPath}/">CODE KIRI</a></div>
 				<div class="header-right">
 					<%
 					DFD_USER user = (DFD_USER) session.getAttribute("user");

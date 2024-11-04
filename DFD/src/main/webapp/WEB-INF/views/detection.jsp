@@ -23,7 +23,7 @@
 	<div class="container">
 		<!-- 헤더 -->
 		<header>
-			<div class="header-left">CODE KIRI</div>
+			<div class="header-left"><a href="${pageContext.request.contextPath}/">CODE KIRI</a></div>
 			<div class="header-right">
 				<a href="${pageContext.request.contextPath}/fileTest">FileTest</a> <a
 					href="${pageContext.request.contextPath}/detection">Detection</a> <a

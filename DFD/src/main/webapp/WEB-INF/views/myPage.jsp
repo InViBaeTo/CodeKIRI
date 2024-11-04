@@ -1,54 +1,68 @@
 <%@page import="com.DFD.entity.DFD_USER"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Page</title>
-    <link href="https://fonts.googleapis.com/css2?family=Koulen&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/myPage.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Page</title>
+<!-- Google Fonts 추가 -->
+<link
+	href="https://fonts.googleapis.com/css2?family=Koulen&family=Goldman&family=Notable&family=Oleo+Script&display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Koulen&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/myPage.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="header-left">CODE KIRI</div>
-            <div class="header-right">
-                <a href="${pageContext.request.contextPath}/fileTest">FileTest</a>
-                <a href="${pageContext.request.contextPath}/detection">Detection</a>
-                <a href="${pageContext.request.contextPath}/doLogout">Logout</a>
-                <a href="${pageContext.request.contextPath}/myPage">Mypage</a>
-            </div>
-        </header>
+	<div class="container">
+		<header>
+			<div class="header-left">
+				<a href="${pageContext.request.contextPath}/">CODE KIRI</a>
+			</div>
+			<div class="header-right">
+				<a href="${pageContext.request.contextPath}/fileTest">FileTest</a> <a
+					href="${pageContext.request.contextPath}/detection">Detection</a> <a
+					href="${pageContext.request.contextPath}/doLogout">Logout</a> <a
+					href="${pageContext.request.contextPath}/myPage">Mypage</a>
+			</div>
+		</header>
 
-        <div class="profile-section">
-            <div class="profile-info">
-                <div class="profile-image">
-                    <img src="${pageContext.request.contextPath}/img/아이콘.jpg" alt="Profile">
-                </div>
-                <div class="profile-details">
-                    <%
-                    DFD_USER user = (DFD_USER) session.getAttribute("user");
-                    String userId = user.getUser_id();
-                    %>
-                    <div class="email">이메일: <%= user.getUser_email() %></div>
-                    <div class="signup-date">가입일: <%= user.getJoined_at() %></div>
-                </div>
-            </div>
-        </div>
+		<div class="profile-section">
+			<div class="profile-info">
+				<div class="profile-image">
+					<img src="${pageContext.request.contextPath}/img/아이콘.jpg"
+						alt="Profile">
+				</div>
+				<div class="profile-details">
+					<%
+					DFD_USER user = (DFD_USER) session.getAttribute("user");
+					String userId = user.getUser_id();
+					%>
+					<div class="email">
+						이메일:
+						<%=user.getUser_email()%></div>
+					<div class="signup-date">
+						가입일:
+						<%=user.getJoined_at()%></div>
+				</div>
+			</div>
+		</div>
 
-        <div class="video-main">
-            <h2>녹화된 파일 목록</h2>
-            <div id="video-gallery" class="video-gallery"></div>
-        </div>
-    </div>
+		<div class="video-main">
+			<h2>녹화된 파일 목록</h2>
+			<div id="video-gallery" class="video-gallery"></div>
+		</div>
+	</div>
 
-    <script>
+	<script>
     
         // Java에서 가져온 userId를 JavaScript 변수에 할당
-        const userId = "<%= userId %>";
+        const userId = "<%=userId%>";
 
         // 페이지 로드 시 MP4 파일 목록 가져오기
         $(document).ready(function() {
