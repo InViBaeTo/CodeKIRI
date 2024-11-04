@@ -72,6 +72,17 @@ header {
 	padding: 70px;
 }
 
+.main-bar{
+	width: 600px;
+	background-color: white;
+	padding: 20px;
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	color: black;
+	margin:20px;
+}
+
 /* 결과 표시 바 */
 .result-bar {
 	width: 800px;

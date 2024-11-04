@@ -1,42 +1,43 @@
 @charset "UTF-8";
 
 * {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body, html {
-   height: 100%;
-   width: 100%;
-   overflow: hidden;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
+
 /* 공통 헤더 스타일 */
 header {
-   width: 100%;
-   max-width: 1440px; /* 최대 너비 고정 */
-   height: 80px;
-   padding: 20px;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   position: fixed;
-   top: 0;
-   left: 50%;
-   transform: translateX(-50%);
-   color: black;
-   font-weight: bold;
-   z-index: 2;
-   background: rgba(255, 255, 255, 0.9);
+	width: 100%;
+	max-width: 1440px; /* 최대 너비 고정 */
+	height: 80px;
+	padding: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	color: black;
+	font-weight: bold;
+	z-index: 2;
+	background: rgba(255, 255, 255, 0.9);
 }
 
 /* 팀명 스타일 */
 .header-left {
-   font-size: 24px;
-   font-family: 'Notable', sans-serif;
+	font-size: 24px;
+	font-family: 'Notable', sans-serif;
 }
 
 .header-left a {
@@ -45,83 +46,114 @@ header {
 }
 
 .header-right a {
-   font-size: 18px;
-   text-decoration: none;
-   color: black;
-   margin-left: 15px; /* 링크 간의 간격 추가 */
-   font-weight: bold;
-   transition: color 0.3s;
-   border: none; /* 사각형 박스를 없애기 위해 테두리 제거 */
-   background: none; /* 배경색 제거 */
+	font-size: 18px;
+	text-decoration: none;
+	color: black;
+	margin-left: 15px; /* 링크 간의 간격 추가 */
+	font-weight: bold;
+	transition: color 0.3s;
+	border: none; /* 사각형 박스를 없애기 위해 테두리 제거 */
+	background: none; /* 배경색 제거 */
 }
 
 .header-right a:hover {
-   color: gray; /* 호버 시 색상 변경 */
+	color: gray; /* 호버 시 색상 변경 */
 }
 
 /* 메인 콘텐츠 */
 .main-content {
-    width: 1400px;
-    margin-top: 120px;
-    height : 800px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #f2f2f2;
-    padding: 50px;
+	width: 1400px;
+	margin-top: 120px;
+	height: 800px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #f2f2f2;
+	padding: 50px;
+}
+.main-bar{
+	width: 600px;
+	background-color: white;
+	padding: 20px;
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	color: black;
+	margin:50px;
 }
 
 /* 디스플레이 바 */
 .display-bar {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    justify-content: center; /* 중앙 정렬 추가 */
+	width: 100%;
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+	justify-content: center; /* 중앙 정렬 추가 */
 }
 
-
 .test-button {
-    width: 60px;
-    height: 40px;
-    margin-left: 10px;
-    background-color: #1ec800;
-    border: none;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
+	width: 60px;
+	height: 40px;
+	margin-left: 10px;
+	background-color: #1ec800;
+	border: none;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
 }
 
 /* 결과 표시 바 */
 .result-bar {
-    width: 800px;
-    background-color: white;
-    padding: 20px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    color: black;
-    border-radius: 10px;
+	width: 800px;
+	background-color: white;
+	padding: 20px;
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	color: black;
+	border-radius: 10px;
 }
 /* 미리보기 화면 */
 .preview-screen {
-    width: 600px;
-    height: 400px;
-    background-color: black;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    margin-bottom: 20px;
-    position: relative; /* 이미지 위치 조정을 위해 추가 */
+	width: 600px;
+	height: 400px;
+	background-color: black;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	margin-bottom: 20px;
+	position: relative; /* 이미지 위치 조정을 위해 추가 */
 }
 
 .preview-screen img {
-    position: absolute; /* 이미지를 미리보기 화면의 중앙에 위치시키기 위해 사용 */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* 중앙 정렬 */
+	position: absolute; /* 이미지를 미리보기 화면의 중앙에 위치시키기 위해 사용 */
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%); /* 중앙 정렬 */
+}
+
+#uploadButton {
+	background-color: #4CAF50; /* 초록색 배경 */
+	color: white; /* 흰색 글자 */
+	border: none; /* 테두리 없음 */
+	padding: 10px 20px; /* 여백 */
+	text-align: center; /* 가운데 정렬 */
+	text-decoration: none; /* 밑줄 없음 */
+	display: inline-block; /* 인라인 블록 */
+	font-size: 16px; /* 글자 크기 */
+	border-radius: 5px; /* 둥근 테두리 */
+	cursor: pointer; /* 커서 모양 변경 */
+	transition: background-color 0.3s; /* 배경색 변화 효과 */
+}
+
+#uploadButton:hover {
+	background-color: #45a049; /* 호버 시 배경색 변화 */
+}
+
+#fileInput {
+	margin-bottom: 10px; /* 입력 필드와 버튼 사이 간격 */
 }

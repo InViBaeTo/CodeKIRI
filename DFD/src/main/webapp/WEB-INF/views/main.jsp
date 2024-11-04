@@ -82,7 +82,7 @@
 				<div class="description-box">
 					<h1>DETECTOR</h1>
 					<p class="text1">
-						CODE KIRI는 AI 시대에 맞춰<br>딥페이크를 연구하고 개발하는 팀입니다.
+						CODE KIRI는 AI 시대에 맞춰<br>딥페이크 탐지 서비스를 개발하는 팀입니다.
 					</p>
 					<p class="text2">
 						AI가 발전하여 화면너머의 사람마저<br>감출 수 있는 상황에 맞추어<br>딥페이크를 검출하고

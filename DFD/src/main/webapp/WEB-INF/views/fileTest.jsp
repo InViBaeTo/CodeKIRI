@@ -16,17 +16,21 @@
 <body>
 	<div class="container">
 		<header>
-			<div class="header-left"><a href="${pageContext.request.contextPath}/">CODE KIRI</a></div>
+			<div class="header-left">
+				<a href="${pageContext.request.contextPath}/">CODE KIRI</a>
+			</div>
 			<div class="header-right">
-				<a href="${pageContext.request.contextPath}/fileTest">FileTest</a> 
-				<a href="${pageContext.request.contextPath}/detection">Detection</a> 
-				<a href="${pageContext.request.contextPath}/doLogout">Logout</a> 
-				<a href="${pageContext.request.contextPath}/myPage">Mypage</a>
+				<a href="${pageContext.request.contextPath}/fileTest">FileTest</a> <a
+					href="${pageContext.request.contextPath}/detection">Detection</a> <a
+					href="${pageContext.request.contextPath}/doLogout">Logout</a> <a
+					href="${pageContext.request.contextPath}/myPage">Mypage</a>
 			</div>
 		</header>
 
 		<div class="main-content">
-			<h1>파일 업로드</h1>
+			<div class="main-bar">
+				<h1>파일 업로드</h1>
+			</div>
 			<div class="preview-screen">
 				<img id="imagePreview" src="" alt="미리보기 이미지"
 					style="display: none; max-width: 100%; max-height: 100%;" />
@@ -34,11 +38,13 @@
 
 			<div class="display-bar">
 				<form id="uploadForm" onsubmit="return handleUpload(event);">
-					<input type="file" name="file" id="fileInput" onchange="previewImage(event)" />
-					<input type="submit" value="Upload" id="uploadButton" disabled />
+					<input type="file" name="file" id="fileInput"
+						onchange="previewImage(event)" /> <input type="submit"
+						value="Upload" id="uploadButton" disabled />
 				</form>
 			</div>
-			<div id="waitingMessage" class="waiting-message" style="display: none;">기다려 주세요...</div>
+			<div id="waitingMessage" class="waiting-message"
+				style="display: none;">기다려 주세요...</div>
 			<div id="resultBar" class="result-bar">파일을 넣어주세요</div>
 		</div>
 	</div>

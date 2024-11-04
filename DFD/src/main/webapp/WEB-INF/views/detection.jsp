@@ -35,9 +35,10 @@
 		</header>
 
 		<!-- 메인 콘텐츠 영역 -->
-		<div class="main-content"
-			style="overflow-y: auto; background-image: url('${pageContext.request.contextPath}/img/paper.jpg'); background-size: cover; background-position: center;">
-			<h1>실시간 화면 캡처</h1>
+		<div class="main-content">
+			<div class="main-bar">
+				<h1>실시간 화면 캡처</h1>
+			</div>
 			<div class="video-container">
 				<video id="liveScreenVideo" class="video" autoplay playsinline>
 				</video>
