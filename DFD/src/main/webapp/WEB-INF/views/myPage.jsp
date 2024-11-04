@@ -113,6 +113,27 @@
             }
         }
 
+        function sendVideoRequest(filename) {
+            $.ajax({
+                url: "http://192.168.219.115:5000/deletevideo/" + userId + '/' + filename,
+                method: 'GET',
+                success: function(response) {
+                    if (response.success) {
+                        // 파일 삭제 후 MP4 파일 목록을 다시 가져오기
+                        fetchMp4Files();
+                        alert(response.message); // 성공 메시지 표시
+                    } else {
+                        alert("오류: " + response.error);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("Flask API 요청 실패: " + status + ", " + error);
+                }
+            });
+        }
+      
+        
+        
     </script>
 </body>
 </html>

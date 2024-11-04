@@ -49,3 +49,22 @@ def setup_routes2(app):
         except Exception as e:
             print(f"파일 제공 중 오류 발생: {e}")  # 디버그 메시지
             return jsonify({"error": "Internal Server Error"}), 500
+    
+    @app.route('/deletevideo/<user_id>/<filename>')
+    def delete_file(user_id, filename):
+        user_name = os.getenv('USERNAME') 
+        folder_path = f'C:/Users/{user_name}/Desktop/DFD_video/{user_id}/mp4/after'
+        
+        try:
+            # 파일 경로를 완전하게 지정
+            file_path = os.path.join(folder_path, filename)
+            os.remove(file_path)
+            
+            # 성공적으로 삭제되었음을 JSON으로 반환
+            return jsonify({"success": True, "message": "파일이 성공적으로 삭제되었습니다."})
+        except Exception as e:
+            # 오류가 발생한 경우 JSON 형식으로 오류 메시지를 반환
+            return jsonify({"success": False, "error": str(e)})
+
+    
+    
