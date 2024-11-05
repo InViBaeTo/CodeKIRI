@@ -196,7 +196,7 @@
             if (response.ok) {
                 const data = await response.json();
                 console.log(data);
-                document.getElementById('predictionResult').innerText = "예측 결과: " + data.prediction;
+                document.getElementById('predictionResult').innerText = "예측 결과: " + data.prediction +"딥페이크 확률: "+ data.probability+"%";
             } else {
                 document.getElementById('predictionResult').innerText = "예측 결과 기다리는중...";
             }

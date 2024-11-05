@@ -19,6 +19,7 @@ class VideoManager:
         self.mp4_file_path = None
         self.video_folder_mp4a = None
         self.prediction_result = None
+        self.probabaility = None
 video_manager = VideoManager()
 
 prediction_result= None
@@ -198,9 +199,12 @@ def setup_routes(app):
             result_data = request.json
             # 받은 결과 데이터 처리
             print("받은 결과:", result_data)
-            prediction_result = result_data.get('prediction')  # pred[0]값 저장
-            video_manager.prediction_result = ""
+            prediction_result = result_data.get('prediction')  # pred 값 get
+            probability = result_data.get('probability') # 확률값 get
+            video_manager.prediction_result = None
             video_manager.prediction_result = prediction_result # 결과값 클래스에 저장
+            video_manager.probabaility = None
+            video_manager.probabaility = probability
             
             # MP4 파일 이동
             
@@ -221,9 +225,10 @@ def setup_routes(app):
     @app.route('/get_prediction', methods=['GET'])
     def get_prediction():
         prediction_result = video_manager.prediction_result
+        probability = video_manager.probabaility
         
         if prediction_result is not None:
-            return jsonify({"prediction": prediction_result}), 200
+            return jsonify({"prediction": prediction_result, "probability": probability}), 200
         else:
             return jsonify({"error": "예측 결과가 아직 없습니다."}), 404        
             
