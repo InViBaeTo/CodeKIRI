@@ -49,6 +49,7 @@
 			</div>
 			<div class="result-bar">
 				<p id="predictionResult">예측 결과 기다리는중...</p>
+				<p id="predictionResult2"></p>
 			</div>
 
 		</div>
@@ -196,7 +197,8 @@
             if (response.ok) {
                 const data = await response.json();
                 console.log(data);
-                document.getElementById('predictionResult').innerText = "예측 결과: " + data.prediction +"딥페이크 확률: "+ data.probability+"%";
+                document.getElementById('predictionResult').innerText = "예측 결과: " + data.prediction;
+                document.getElementById('predictionResult2').innerText = " 딥페이크 확률: "+data.probability+"%";                
             } else {
                 document.getElementById('predictionResult').innerText = "예측 결과 기다리는중...";
             }
